@@ -2,318 +2,747 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <meta name="google-site-verification" content="0BZhLHHEII5lHmITVcFwtgOliB76DINKIsouy09KsGk" />
+  <meta name="msvalidate.01" content="AB4AFA3135DB96A6D24EB966B073B214" />
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>DEBATRIX — Make Your Case</title>
 <meta name="theme-color" content="#f7f4ec">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+
 <style>
 :root {
-  --bg:#f7f4ec;
-  --card:#fffdf7;
-  --ink:#191b18;
-  --soft:#62665b;
-  --line:#d9d9cd;
-  --lime:#c6f36a;
-  --red:#b42318;
+  --bg: #f7f4ec;
+  --card: #fffdf7;
+  --ink: #191b18;
+  --soft: #62665b;
+  --line: #d9d9cd;
+  --lime: #c6f36a;
+  --red: #b42318;
 }
-* {box-sizing:border-box}
-[hidden] {display:none!important}
-body {
-  margin:0;
-  background:var(--bg);
-  background-image:radial-gradient(#c8c9bb .7px,transparent .7px);
-  background-size:17px 17px;
-  color:var(--ink);
-  font:15px/1.6 "DM Sans",sans-serif;
-}
-button,input,textarea,select {font:inherit}
-button {cursor:pointer}
-button:disabled {opacity:.6;cursor:wait}
-button:focus-visible,input:focus-visible,textarea:focus-visible,
-select:focus-visible {
-  outline:3px solid #8ebd37;
-  outline-offset:2px;
-}
-main {max-width:960px;margin:auto;padding:25px 20px 60px}
-.topbar {display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.logo {
-  width:43px;height:43px;display:grid;place-items:center;
-  background:var(--lime);border:2px solid var(--ink);
-  border-radius:12px;box-shadow:3px 3px var(--ink);
-  font:800 19px Manrope;transform:rotate(-5deg);
-}
-.brand {font:800 19px Manrope;letter-spacing:.08em}
-.top-actions {margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
-.smallbtn {
-  padding:9px 12px;background:var(--card);
-  border:1.5px solid var(--ink);border-radius:9px;
-  font-size:12px;font-weight:800;
-}
-.hero {padding:45px 0 32px}
-.eyebrow {
-  color:#52672c;font-size:11px;font-weight:800;
-  letter-spacing:.15em;text-transform:uppercase;
-}
-h1 {
-  margin:12px 0 18px;
-  font:800 clamp(42px,8vw,78px)/1.04 Manrope;
-  letter-spacing:-.07em;
-}
-.highlight {
-  background:var(--lime);border:1px solid var(--ink);
-  padding:0 .08em;
-}
-.subtitle {max-width:580px;color:var(--soft);font-size:17px}
-.modes {
-  display:flex;gap:8px;padding:5px;margin-bottom:28px;
-  width:fit-content;max-width:100%;
-  background:#eae8de;border:1.5px solid var(--ink);
-  border-radius:12px;
-}
-.mode {
-  border:1.5px solid transparent;border-radius:8px;
-  padding:10px 16px;background:transparent;
-  font-size:13px;font-weight:800;
-}
-.mode.active {background:var(--lime);border-color:var(--ink)}
-.panel {
-  position:relative;background:var(--card);
-  border:1.5px solid var(--ink);border-radius:19px;
-  padding:clamp(20px,4vw,30px);
-  box-shadow:5px 5px var(--ink);
-}
-.panel:before {
-  content:"YOUR TURN";position:absolute;right:20px;top:-13px;
-  background:var(--lime);border:1.5px solid var(--ink);
-  border-radius:5px;padding:3px 9px;
-  font-size:10px;font-weight:800;letter-spacing:.1em;
-  transform:rotate(2deg);
-}
-h2 {font:800 26px Manrope;letter-spacing:-.04em}
-h3 {margin:0 0 8px;font:800 17px Manrope}
-label {display:block;font-weight:800;margin:0 0 8px}
-input:not([type=radio]),textarea,select {
-  width:100%;padding:13px;border:1.5px solid #cfd0c3;
-  border-radius:10px;background:#fbfaf4;color:var(--ink);
-}
-textarea {min-height:110px;resize:vertical}
-.row {
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:18px;margin-top:22px;
-}
-.hint {color:var(--soft);font-size:12px;margin:8px 0 0}
-.chips {display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-.chip {
-  padding:8px 11px;background:var(--bg);
-  border:1px solid var(--line);border-radius:8px;
-  font-size:12px;font-weight:700;
-}
-.chip:hover {background:var(--lime)}
 
-/* Original-style segmented selection, now with Neutral */
+* {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  background-image: radial-gradient(#c8c9bb .7px, transparent .7px);
+  background-size: 17px 17px;
+  color: var(--ink);
+  font: 15px/1.6 "DM Sans", sans-serif;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: .6;
+  cursor: wait;
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid #8ebd37;
+  outline-offset: 2px;
+}
+
+main {
+  max-width: 960px;
+  margin: auto;
+  padding: 25px 20px 60px;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.logo {
+  width: 43px;
+  height: 43px;
+  display: grid;
+  place-items: center;
+  background: var(--lime);
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  box-shadow: 3px 3px var(--ink);
+  font: 800 19px Manrope;
+  transform: rotate(-5deg);
+}
+
+.brand {
+  font: 800 19px Manrope;
+  letter-spacing: .08em;
+}
+
+.top-actions {
+  margin-left: auto;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.smallbtn {
+  padding: 9px 12px;
+  background: var(--card);
+  border: 1.5px solid var(--ink);
+  border-radius: 9px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.hero {
+  padding: 45px 0 32px;
+}
+
+.eyebrow {
+  color: #52672c;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 12px 0 18px;
+  font: 800 clamp(42px, 8vw, 78px)/1.04 Manrope;
+  letter-spacing: -.07em;
+}
+
+.highlight {
+  background: var(--lime);
+  border: 1px solid var(--ink);
+  padding: 0 .08em;
+}
+
+.subtitle {
+  max-width: 580px;
+  color: var(--soft);
+  font-size: 17px;
+}
+
+.modes {
+  display: flex;
+  gap: 8px;
+  padding: 5px;
+  margin-bottom: 28px;
+  width: fit-content;
+  max-width: 100%;
+  background: #eae8de;
+  border: 1.5px solid var(--ink);
+  border-radius: 12px;
+}
+
+.mode {
+  border: 1.5px solid transparent;
+  border-radius: 8px;
+  padding: 10px 16px;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.mode.active {
+  background: var(--lime);
+  border-color: var(--ink);
+}
+
+.panel {
+  position: relative;
+  background: var(--card);
+  border: 1.5px solid var(--ink);
+  border-radius: 19px;
+  padding: clamp(20px, 4vw, 30px);
+  box-shadow: 5px 5px var(--ink);
+}
+
+.panel:before {
+  content: "YOUR TURN";
+  position: absolute;
+  right: 20px;
+  top: -13px;
+  background: var(--lime);
+  border: 1.5px solid var(--ink);
+  border-radius: 5px;
+  padding: 3px 9px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .1em;
+  transform: rotate(2deg);
+}
+
+h2 {
+  font: 800 26px Manrope;
+  letter-spacing: -.04em;
+}
+
+h3 {
+  margin: 0 0 8px;
+  font: 800 17px Manrope;
+}
+
+label {
+  display: block;
+  font-weight: 800;
+  margin: 0 0 8px;
+}
+
+input:not([type=radio]),
+textarea,
+select {
+  width: 100%;
+  padding: 13px;
+  border: 1.5px solid #cfd0c3;
+  border-radius: 10px;
+  background: #fbfaf4;
+  color: var(--ink);
+}
+
+textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-top: 22px;
+}
+
+.hint {
+  color: var(--soft);
+  font-size: 12px;
+  margin: 8px 0 0;
+}
+
+.chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+.chip {
+  padding: 8px 11px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.chip:hover {
+  background: var(--lime);
+}
+
+/* CLEAN DEBATE SIDE SELECTOR — NO DIVIDING LINES */
+
 .segment {
-  display:flex;gap:5px;padding:5px;background:#eeece3;
-  border:1px solid var(--line);border-radius:11px;
+  display: flex;
+  gap: 6px;
+  padding: 5px;
+  background: #eeece3;
+  border: 1px solid #d9d9cd;
+  border-radius: 12px;
 }
+
 .segment input[type="radio"] {
-  position:absolute;opacity:0;width:1px;height:1px;
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
 }
+
 .segment label {
-  flex:1;text-align:center;margin:0;padding:10px 8px;
-  border:1px solid transparent;border-radius:8px;
-  background:transparent;cursor:pointer;font-size:13px;
+  flex: 1;
+  text-align: center;
+  margin: 0;
+  padding: 11px 6px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 800;
+  transition: background .2s ease, color .2s ease;
 }
-.segment input:checked+label {
-  background:var(--ink);color:var(--lime);
+
+.segment input:checked + label {
+  background: #191b18;
+  color: #c6f36a;
 }
-.segment input:focus-visible+label {
-  outline:3px solid #8ebd37;outline-offset:2px;
+
+.segment input:focus-visible + label {
+  outline: 3px solid #8ebd37;
+  outline-offset: 2px;
 }
+
+/* BUTTONS */
 
 .primary {
-  margin-top:22px;padding:13px 19px;
-  background:var(--lime);border:1.5px solid var(--ink);
-  border-radius:9px;box-shadow:3px 3px var(--ink);
-  font-weight:800;
+  margin-top: 22px;
+  padding: 13px 19px;
+  background: var(--lime);
+  border: 1.5px solid var(--ink);
+  border-radius: 9px;
+  box-shadow: 3px 3px var(--ink);
+  font-weight: 800;
 }
-.primary:hover:not(:disabled) {transform:translate(-1px,-1px)}
-.error {color:var(--red);font-size:13px;font-weight:700;margin-top:10px}
-.success {color:#426b20;font-size:13px;font-weight:700}
-.results {margin-top:38px}
+
+.primary:hover:not(:disabled) {
+  transform: translate(-1px, -1px);
+}
+
+.error {
+  color: var(--red);
+  font-size: 13px;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+/* RESULTS */
+
+.results {
+  margin-top: 38px;
+}
+
 .result-card {
-  padding:19px;margin-bottom:13px;background:var(--card);
-  border:1.5px solid var(--line);border-radius:13px;
-  box-shadow:2px 2px #deded4;
-  overflow-wrap:anywhere;
+  padding: 19px;
+  margin-bottom: 13px;
+  background: var(--card);
+  border: 1.5px solid var(--line);
+  border-radius: 13px;
+  box-shadow: 2px 2px #deded4;
+  overflow-wrap: anywhere;
 }
-.result-card p {margin:8px 0}
-.result-card ul {padding-left:22px}
-.result-card li {margin:7px 0}
-.result-card a {color:#496c22}
-.result-title {font:800 29px Manrope;letter-spacing:-.04em}
-.result-tabs {display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px}
+
+.result-card p {
+  margin: 8px 0;
+}
+
+.result-card ul {
+  padding-left: 22px;
+}
+
+.result-card li {
+  margin: 7px 0;
+}
+
+.result-card a {
+  color: #496c22;
+}
+
+.result-title {
+  font: 800 29px Manrope;
+  letter-spacing: -.04em;
+}
+
+.result-tabs {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
 .result-tab {
-  padding:10px 13px;border:1px solid var(--line);
-  border-radius:8px;background:var(--card);font-weight:800;
+  padding: 10px 13px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  font-weight: 800;
 }
-.result-tab.active {background:var(--lime);border-color:var(--ink)}
-.toolbar {display:flex;gap:9px;flex-wrap:wrap;margin:15px 0}
+
+.result-tab.active {
+  background: var(--lime);
+  border-color: var(--ink);
+}
+
+.toolbar {
+  display: flex;
+  gap: 9px;
+  flex-wrap: wrap;
+  margin: 15px 0;
+}
+
 .badge {
-  display:inline-block;padding:2px 7px;border:1px solid var(--line);
-  border-radius:5px;font-size:10px;font-weight:800;
+  display: inline-block;
+  padding: 2px 7px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  font-size: 10px;
+  font-weight: 800;
 }
+
+/* AUTHENTICATION */
+
 .auth-box {
-  margin-top:20px;padding:22px;background:var(--card);
-  border:1.5px solid var(--ink);border-radius:15px;
+  margin-top: 20px;
+  padding: 22px;
+  background: var(--card);
+  border: 1.5px solid var(--ink);
+  border-radius: 15px;
 }
-.auth-box input {margin-bottom:13px}
-.auth-box .primary {margin-top:8px}
+
+.auth-box input {
+  margin-bottom: 13px;
+}
+
+.auth-box .primary {
+  margin-top: 8px;
+}
+
+/* HISTORY */
+
 .history-item {
-  display:flex;justify-content:space-between;align-items:center;
-  gap:15px;flex-wrap:wrap;padding:16px;
-  margin-bottom:10px;background:var(--card);
-  border:1.5px solid var(--line);border-radius:12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  padding: 16px;
+  margin-bottom: 10px;
+  background: var(--card);
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
 }
-.history-item p {margin:3px 0;color:var(--soft);font-size:12px}
-.history-actions {display:flex;gap:7px;flex-wrap:wrap}
+
+.history-item p {
+  margin: 3px 0;
+  color: var(--soft);
+  font-size: 12px;
+}
+
+.history-actions {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+
 footer {
-  margin-top:50px;border-top:1px solid var(--line);
-  padding-top:18px;text-align:center;color:var(--soft);
-  font-size:12px;
+  margin-top: 50px;
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+  text-align: center;
+  color: var(--soft);
+  font-size: 12px;
 }
-@media(max-width:600px) {
-  main {padding:18px 15px 40px}
-  .row {grid-template-columns:1fr}
-  .top-actions {width:100%;margin-left:0}
-  .modes {width:100%}
-  .mode {flex:1;padding:10px}
-  .subtitle {font-size:15px}
-  .segment label {padding:10px 4px;font-size:12px}
+
+@media (max-width: 600px) {
+  main {
+    padding: 18px 15px 40px;
+  }
+
+  .row {
+    grid-template-columns: 1fr;
+  }
+
+  .top-actions {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .modes {
+    width: 100%;
+  }
+
+  .mode {
+    flex: 1;
+    padding: 10px;
+  }
+
+  .subtitle {
+    font-size: 15px;
+  }
+
+  .segment label {
+    font-size: 12px;
+  }
 }
+
 @media print {
-  .topbar,.hero,.modes,.panel,.toolbar,footer,
-  #history-panel,#auth-panel {display:none!important}
-  body {background:white}
-  .results {display:block!important;margin:0}
-  .result-card {box-shadow:none;break-inside:avoid}
+  .topbar,
+  .hero,
+  .modes,
+  .panel,
+  .toolbar,
+  footer,
+  #history-panel,
+  #auth-panel {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+  }
+
+  .results {
+    display: block !important;
+    margin: 0;
+  }
+
+  .result-card {
+    box-shadow: none;
+    break-inside: avoid;
+  }
 }
 </style>
 </head>
+
 <body>
 <main>
+
+<!-- TOP NAVIGATION -->
 
 <div class="topbar">
   <div class="logo">D.</div>
   <div class="brand">DEBATRIX</div>
+
   <div class="top-actions">
-    <button class="smallbtn" id="history-btn">History</button>
-    <button class="smallbtn" id="auth-btn">Log in / Sign up</button>
-    <button class="smallbtn" id="logout-btn" hidden>Log out</button>
+    <button class="smallbtn" id="history-btn">
+      History
+    </button>
+
+    <button class="smallbtn" id="auth-btn">
+      Log in / Sign up
+    </button>
+
+    <button class="smallbtn" id="logout-btn" hidden>
+      Log out
+    </button>
   </div>
 </div>
 
+<!-- HERO -->
+
 <header class="hero">
-  <p class="eyebrow">Think fast. Make your case.</p>
-  <h1>Walk in with <span class="highlight">a case.</span></h1>
+  <p class="eyebrow">
+    Think fast. Make your case.
+  </p>
+
+  <h1>
+    Walk in with
+    <span class="highlight">a case.</span>
+  </h1>
+
   <p class="subtitle">
     Sharper arguments. Smarter preparation.
     From the debate floor to the Model UN committee room.
     Prepare with AI, then make the ideas your own.
   </p>
+
   <p class="hint" id="account-status">
     Guest mode — no login required.
   </p>
 </header>
 
+<!-- MODE SELECTION -->
+
 <div class="modes" aria-label="Preparation modes">
-  <button class="mode active" id="mode-debate" aria-pressed="true">
+  <button
+    class="mode active"
+    id="mode-debate"
+    aria-pressed="true"
+  >
     ⚡ Debate Prep
   </button>
-  <button class="mode" id="mode-mun" aria-pressed="false">
+
+  <button
+    class="mode"
+    id="mode-mun"
+    aria-pressed="false"
+  >
     🌐 Model UN
   </button>
 </div>
 
-<!-- DEBATE PREP -->
+<!-- DEBATE PREPARATION -->
+
 <section class="panel" id="debate-panel">
-  <label for="motion">What are we arguing about?</label>
-  <textarea id="motion" maxlength="300"
-    placeholder="Enter your debate motion..."></textarea>
-  <p class="hint">Use the exact motion if you have one.</p>
+
+  <label for="motion">
+    What are we arguing about?
+  </label>
+
+  <textarea
+    id="motion"
+    maxlength="300"
+    placeholder="Enter your debate motion..."
+  ></textarea>
+
+  <p class="hint">
+    Use the exact motion if you have one.
+  </p>
 
   <div class="chips" id="chips"></div>
 
   <div class="row">
+
     <div>
       <label>Which side are you on?</label>
-      <div class="segment" role="radiogroup"
-           aria-label="Debate position">
-        <input type="radio" name="side" id="for"
-               value="For" checked>
+
+      <div
+        class="segment"
+        role="radiogroup"
+        aria-label="Debate side"
+      >
+        <input
+          type="radio"
+          name="side"
+          id="for"
+          value="For"
+          checked
+        >
         <label for="for">For</label>
 
-        <input type="radio" name="side" id="against"
-               value="Against">
+        <input
+          type="radio"
+          name="side"
+          id="against"
+          value="Against"
+        >
         <label for="against">Against</label>
 
-        <input type="radio" name="side" id="neutral"
-               value="Neutral">
+        <input
+          type="radio"
+          name="side"
+          id="neutral"
+          value="Neutral"
+        >
         <label for="neutral">Neutral</label>
       </div>
-      <p class="hint">Neutral explores both sides fairly.</p>
+
+      <p class="hint">
+        Neutral explores arguments on both sides.
+      </p>
     </div>
 
     <div>
       <label for="level">Format</label>
+
       <select id="level">
-        <option value="School debate">School Debate</option>
-        <option value="Parliamentary">Parliamentary</option>
-        <option value="Competitive debate">Competitive Debate</option>
+        <option value="School debate">
+          School Debate
+        </option>
+
+        <option value="Parliamentary">
+          Parliamentary
+        </option>
+
+        <option value="Competitive debate">
+          Competitive Debate
+        </option>
       </select>
     </div>
+
   </div>
 
-  <button class="primary" id="debate-go">Make my case ↗</button>
-  <p class="error" id="debate-error" role="alert"></p>
+  <button class="primary" id="debate-go">
+    Make my case ↗
+  </button>
+
+  <p
+    class="error"
+    id="debate-error"
+    role="alert"
+  ></p>
+
   <p class="hint">
-    Verify evidence and sources before using them in a debate.
+    Verify evidence and sources before using them
+    in a debate.
   </p>
+
 </section>
 
-<!-- MODEL UNITED NATIONS -->
+<!-- MODEL UN PREPARATION -->
+
 <section class="panel" id="mun-panel" hidden>
-  <p class="eyebrow">Your delegation. Your strategy.</p>
-  <h2>Know your country. Shape the room.</h2>
+
+  <p class="eyebrow">
+    Your delegation. Your strategy.
+  </p>
+
+  <h2>
+    Know your country. Shape the room.
+  </h2>
+
   <p class="hint">
-    Represent your assigned country and prepare for diplomacy.
+    Represent your assigned country and prepare
+    for diplomacy.
   </p>
 
   <div style="margin-top:22px">
-    <label for="mun-country">Your assigned country</label>
-    <input id="mun-country" maxlength="100"
-           placeholder="e.g. India">
+    <label for="mun-country">
+      Your assigned country
+    </label>
+
+    <input
+      id="mun-country"
+      maxlength="100"
+      placeholder="e.g. India"
+    >
   </div>
 
   <div class="row">
+
     <div>
-      <label for="mun-committee">Committee</label>
-      <input id="mun-committee" maxlength="150"
-             placeholder="e.g. UNHRC">
+      <label for="mun-committee">
+        Committee
+      </label>
+
+      <input
+        id="mun-committee"
+        maxlength="150"
+        placeholder="e.g. UNHRC"
+      >
     </div>
+
     <div>
-      <label for="mun-agenda">Agenda / topic</label>
-      <input id="mun-agenda" maxlength="300"
-             placeholder="e.g. Protecting refugees">
+      <label for="mun-agenda">
+        Agenda / topic
+      </label>
+
+      <input
+        id="mun-agenda"
+        maxlength="300"
+        placeholder="e.g. Protecting refugees"
+      >
     </div>
+
   </div>
 
   <div style="margin-top:22px">
-    <label for="mun-others">Other countries / delegations</label>
-    <textarea id="mun-others" maxlength="500"
-      placeholder="e.g. China, USA, Brazil"></textarea>
+    <label for="mun-others">
+      Other countries / delegations
+    </label>
+
+    <textarea
+      id="mun-others"
+      maxlength="500"
+      placeholder="e.g. China, USA, Brazil"
+    ></textarea>
+
     <p class="hint">
       Separate countries with commas.
       Not every country must be an opponent.
@@ -323,85 +752,163 @@ footer {
   <button class="primary" id="mun-go">
     Build my MUN prep ↗
   </button>
-  <p class="error" id="mun-error" role="alert"></p>
+
+  <p
+    class="error"
+    id="mun-error"
+    role="alert"
+  ></p>
+
   <p class="hint">
     Verify country policies with official sources.
   </p>
+
 </section>
 
 <!-- GENERATED RESULTS -->
+
 <section class="results" id="results" hidden>
+
   <h2 class="result-title" id="result-heading">
     Your preparation
   </h2>
+
   <div class="toolbar">
+
     <button class="smallbtn" id="save-btn">
       Save preparation
     </button>
+
     <button class="smallbtn" id="print-btn">
       Print
     </button>
+
+    <button class="smallbtn" id="download-docx-btn">
+      Download Quick Reference (.docx) ↓
+    </button>
+
   </div>
-  <p class="hint" id="save-status" role="status"></p>
+
+  <p
+    class="hint"
+    id="save-status"
+    role="status"
+  ></p>
+
   <div id="result-body"></div>
+
 </section>
 
-<!-- LOGIN / SIGN UP -->
+<!-- LOGIN AND SIGNUP -->
+
 <section class="panel" id="auth-panel" hidden>
-  <p class="eyebrow">Your work. Your account.</p>
-  <h2>Welcome to DEBATRIX.</h2>
-  <p class="hint">
-    Sign in to sync your preparation history across devices.
-    You can also continue using DEBATRIX as a guest.
+
+  <p class="eyebrow">
+    Your work. Your account.
   </p>
 
-  <button class="smallbtn" id="close-auth" type="button"
-          style="margin-top:20px">
+  <h2>Welcome to DEBATRIX.</h2>
+
+  <p class="hint">
+    Sign in to sync your preparation history across
+    devices. Or continue as a guest.
+  </p>
+
+  <button
+    class="smallbtn"
+    id="close-auth"
+    style="margin-top:18px"
+  >
     ← Back to Home
   </button>
 
   <div class="auth-box">
-    <label for="auth-email">Email</label>
-    <input type="email" id="auth-email"
-           autocomplete="email"
-           placeholder="you@example.com">
 
-    <label for="auth-password">Password</label>
-    <input type="password" id="auth-password"
-           autocomplete="current-password"
-           minlength="8"
-           placeholder="At least 8 characters">
+    <label for="auth-email">
+      Email
+    </label>
+
+    <input
+      type="email"
+      id="auth-email"
+      autocomplete="email"
+      placeholder="you@example.com"
+    >
+
+    <label for="auth-password">
+      Password
+    </label>
+
+    <input
+      type="password"
+      id="auth-password"
+      autocomplete="current-password"
+      minlength="8"
+      placeholder="At least 8 characters"
+    >
 
     <div class="toolbar">
+
       <button class="primary" id="login-btn">
         Log in
       </button>
+
       <button class="primary" id="signup-btn">
         Sign up
       </button>
+
     </div>
 
     <p class="hint">
-      Use an email address you can access for confirmation.
+      Use an email address you can access
+      for confirmation.
     </p>
+
     <p id="auth-message" role="status"></p>
+
   </div>
+
 </section>
 
-<!-- SAVED HISTORY -->
+<!-- HISTORY -->
+
 <section class="results" id="history-panel" hidden>
-  <h2 class="result-title">Your past preparations</h2>
-  <p class="hint" id="history-description"></p>
+
+  <h2 class="result-title">
+    Your past preparations
+  </h2>
+
+  <p
+    class="hint"
+    id="history-description"
+  ></p>
+
   <div class="toolbar">
-    <button class="smallbtn" id="import-btn" hidden>
+
+    <button
+      class="smallbtn"
+      id="import-btn"
+      hidden
+    >
       Import guest history to account
     </button>
-    <button class="smallbtn" id="close-history">
+
+    <button
+      class="smallbtn"
+      id="close-history"
+    >
       ← Back to Home
     </button>
+
   </div>
-  <p id="history-message" role="status"></p>
+
+  <p
+    id="history-message"
+    role="status"
+  ></p>
+
   <div id="history-list"></div>
+
 </section>
 
 <footer>
@@ -410,9 +917,15 @@ footer {
 
 </main>
 
+<!-- EXTERNAL LIBRARIES -->
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js"></script>
+
 <script>
 "use strict";
+
+/* SUPABASE */
 
 const SUPABASE_URL =
   "https://vtsyhccmlhdjhvakjhsl.supabase.co";
@@ -421,19 +934,24 @@ const SUPABASE_KEY =
   "sb_publishable_LQOBXRrnUTpdwHvRb_s3pw_Oa_aqx8z";
 
 const db = window.supabase
-  ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
+  ? window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    )
   : null;
+
+/* UTILITIES */
 
 const $ = id => document.getElementById(id);
 
 const esc = value => String(value ?? "").replace(
   /[&<>"']/g,
   c => ({
-    "&":"&amp;",
-    "<":"&lt;",
-    ">":"&gt;",
-    '"':"&quot;",
-    "'":"&#39;"
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
   })[c]
 );
 
@@ -449,6 +967,7 @@ function guestHistory() {
     const data = JSON.parse(
       localStorage.getItem(LOCAL_KEY) || "[]"
     );
+
     return Array.isArray(data) ? data : [];
   } catch {
     return [];
@@ -456,38 +975,54 @@ function guestHistory() {
 }
 
 function writeGuestHistory(items) {
-  localStorage.setItem(LOCAL_KEY, JSON.stringify(items));
+  localStorage.setItem(
+    LOCAL_KEY,
+    JSON.stringify(items)
+  );
 }
 
 function message(id, value) {
   $(id).textContent = value;
 }
 
+/* WORKSPACE NAVIGATION */
+
 function showWorkspace() {
   $("auth-panel").hidden = true;
   $("history-panel").hidden = true;
-  $("debate-panel").hidden = currentMode !== "debate";
-  $("mun-panel").hidden = currentMode !== "mun";
-  $("results").hidden = !currentPreparation;
+
+  $("debate-panel").hidden =
+    currentMode !== "debate";
+
+  $("mun-panel").hidden =
+    currentMode !== "mun";
+
+  $("results").hidden =
+    !currentPreparation;
 }
 
 function setMode(mode) {
   currentMode = mode;
   currentPreparation = null;
-  $("results").hidden = true;
 
   $("mode-debate").classList.toggle(
-    "active", mode === "debate"
+    "active",
+    mode === "debate"
   );
+
   $("mode-mun").classList.toggle(
-    "active", mode === "mun"
+    "active",
+    mode === "mun"
   );
 
   $("mode-debate").setAttribute(
-    "aria-pressed", String(mode === "debate")
+    "aria-pressed",
+    String(mode === "debate")
   );
+
   $("mode-mun").setAttribute(
-    "aria-pressed", String(mode === "mun")
+    "aria-pressed",
+    String(mode === "mun")
   );
 
   showWorkspace();
@@ -495,6 +1030,8 @@ function setMode(mode) {
 
 $("mode-debate").onclick = () => setMode("debate");
 $("mode-mun").onclick = () => setMode("mun");
+
+/* SUGGESTED DEBATE MOTIONS */
 
 const examples = [
   "Social media does more harm than good to teenagers",
@@ -505,11 +1042,13 @@ const examples = [
 
 examples.forEach(example => {
   const button = document.createElement("button");
+
   button.className = "chip";
   button.textContent = example;
 
   button.onclick = () => {
-    $("motion").value = "This house believes that " +
+    $("motion").value =
+      "This house believes that " +
       example.charAt(0).toLowerCase() +
       example.slice(1);
   };
@@ -517,17 +1056,27 @@ examples.forEach(example => {
   $("chips").appendChild(button);
 });
 
+/* RESULT HELPERS */
+
 function card(title, content) {
-  return `<article class="result-card">
-    <h3>${esc(title)}</h3>${content}
-  </article>`;
+  return `
+    <article class="result-card">
+      <h3>${esc(title)}</h3>
+      ${content}
+    </article>
+  `;
 }
 
 function list(items) {
-  return `<ul>${
-    (Array.isArray(items) ? items : [])
-      .map(x => `<li>${esc(x)}</li>`).join("")
-  }</ul>`;
+  return `
+    <ul>
+      ${
+        (Array.isArray(items) ? items : [])
+          .map(item => `<li>${esc(item)}</li>`)
+          .join("")
+      }
+    </ul>
+  `;
 }
 
 function sourceLink(source, year) {
@@ -535,49 +1084,105 @@ function sourceLink(source, year) {
     `${source || ""} ${year || ""}`
   );
 
-  return `<a
-    href="https://scholar.google.com/scholar?q=${query}"
-    target="_blank" rel="noopener noreferrer">
-    Search for source ↗
-  </a>`;
+  return `
+    <a
+      href="https://scholar.google.com/scholar?q=${query}"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Search for source ↗
+    </a>
+  `;
 }
 
 /* DEBATE RESULTS */
 
 function renderDebate(d) {
-  const points = (d.points || []).map(p => card(
-    p.title,
-    `<span class="badge">${esc(p.strength)}</span>
-     <p><b>Claim:</b> ${esc(p.claim)}</p>
-     <p><b>Evidence:</b> ${esc(p.evidence)}</p>
-     <p class="hint">
-       Source: ${esc(p.source)} ${esc(p.year)}
-     </p>
-     <p>${sourceLink(p.source,p.year)}</p>
-     <p class="hint">
-       <b>Verify:</b> ${esc(p.check)}
-     </p>`
-  )).join("");
+  const points = (d.points || [])
+    .map(point => card(
+      point.title,
+      `
+        <span class="badge">
+          ${esc(point.strength)}
+        </span>
 
-  const attacks = (d.attacks || []).map(a => card(
-    "They say / You reply",
-    `<p><b>They say:</b> ${esc(a.they_say)}</p>
-     <p><b>You reply:</b> ${esc(a.you_say)}</p>
-     <p class="hint">
-       Research lead: ${esc(a.source)}
-     </p>`
-  )).join("");
+        <p>
+          <b>Claim:</b>
+          ${esc(point.claim)}
+        </p>
 
-  const k = d.doodle || {};
+        <p>
+          <b>Evidence:</b>
+          ${esc(point.evidence)}
+        </p>
 
-  const quick = card(
-    k.headline || "Quick prep sheet",
-    `<p><b>Opening:</b> ${esc(k.hook)}</p>
-     <h3>Three pillars</h3>${list(k.pillars)}
-     <h3>Evidence to verify</h3>${list(k.numbers)}
-     <h3>Comebacks</h3>${list(k.comebacks)}
-     <h3>Memorable lines</h3>${list(k.zingers)}
-     <p><b>Closer:</b> ${esc(k.closer)}</p>`
+        <p class="hint">
+          Source:
+          ${esc(point.source)}
+          ${esc(point.year)}
+        </p>
+
+        <p>
+          ${sourceLink(point.source, point.year)}
+        </p>
+
+        <p class="hint">
+          <b>Verify:</b>
+          ${esc(point.check)}
+        </p>
+      `
+    ))
+    .join("");
+
+  const attacks = (d.attacks || [])
+    .map(attack => card(
+      "They say / You reply",
+      `
+        <p>
+          <b>They say:</b>
+          ${esc(attack.they_say)}
+        </p>
+
+        <p>
+          <b>You reply:</b>
+          ${esc(attack.you_say)}
+        </p>
+
+        <p class="hint">
+          Research lead:
+          ${esc(attack.source)}
+        </p>
+      `
+    ))
+    .join("");
+
+  const quick = d.doodle || {};
+
+  const quickReference = card(
+    quick.headline || "Quick Reference",
+    `
+      <p>
+        <b>Opening:</b>
+        ${esc(quick.hook)}
+      </p>
+
+      <h3>Three pillars</h3>
+      ${list(quick.pillars)}
+
+      <h3>Evidence to verify</h3>
+      ${list(quick.numbers)}
+
+      <h3>Comebacks</h3>
+      ${list(quick.comebacks)}
+
+      <h3>Memorable lines</h3>
+      ${list(quick.zingers)}
+
+      <p>
+        <b>Closer:</b>
+        ${esc(quick.closer)}
+      </p>
+    `
   );
 
   const neutral =
@@ -586,23 +1191,39 @@ function renderDebate(d) {
 
   $("result-body").innerHTML = `
     <div class="result-tabs">
-      <button class="result-tab" data-tab="case">
+
+      <button
+        class="result-tab"
+        data-tab="case"
+      >
         ${neutral ? "Both sides" : "Your case"}
       </button>
-      <button class="result-tab" data-tab="attacks">
+
+      <button
+        class="result-tab"
+        data-tab="attacks"
+      >
         Attacks & defences
       </button>
-      <button class="result-tab" data-tab="quick">
-        Quick prep sheet
+
+      <button
+        class="result-tab"
+        data-tab="quick"
+      >
+        Quick Reference
       </button>
+
     </div>
 
     <div id="debate-case">
+
       ${card(
         "Understanding the motion",
         `<p>${esc(d.framing)}</p>`
       )}
+
       ${points}
+
     </div>
 
     <div id="debate-attacks" hidden>
@@ -610,7 +1231,7 @@ function renderDebate(d) {
     </div>
 
     <div id="debate-quick" hidden>
-      ${quick}
+      ${quickReference}
     </div>
 
     <p class="hint">
@@ -619,12 +1240,13 @@ function renderDebate(d) {
     </p>
   `;
 
-  document.querySelectorAll("[data-tab]").forEach(
-    button => {
-      button.onclick = () =>
+  document
+    .querySelectorAll("[data-tab]")
+    .forEach(button => {
+      button.onclick = () => {
         showDebateTab(button.dataset.tab);
-    }
-  );
+      };
+    });
 
   showDebateTab(currentTab);
 }
@@ -632,35 +1254,41 @@ function renderDebate(d) {
 function showDebateTab(tab) {
   currentTab = tab;
 
-  ["case","attacks","quick"].forEach(name => {
+  ["case", "attacks", "quick"].forEach(name => {
     $("debate-" + name).hidden = name !== tab;
   });
 
-  document.querySelectorAll("[data-tab]").forEach(
-    button => {
+  document
+    .querySelectorAll("[data-tab]")
+    .forEach(button => {
       button.classList.toggle(
-        "active", button.dataset.tab === tab
+        "active",
+        button.dataset.tab === tab
       );
-    }
-  );
+    });
 }
 
 /* MODEL UN RESULTS */
 
 function renderMun(d) {
-  const dynamics = (d.countryDynamics || []).map(x =>
-    card(
-      x.country || "Delegation",
-      `<p>
-        <b>Potential relationship:</b>
-        ${esc(x.relationship)}
-       </p>
-       <p>${esc(x.reason)}</p>
-       <p class="hint">
-         Confidence: ${esc(x.confidence)}
-       </p>`
-    )
-  ).join("");
+  const dynamics = (d.countryDynamics || [])
+    .map(item => card(
+      item.country || "Delegation",
+      `
+        <p>
+          <b>Potential relationship:</b>
+          ${esc(item.relationship)}
+        </p>
+
+        <p>${esc(item.reason)}</p>
+
+        <p class="hint">
+          Confidence:
+          ${esc(item.confidence)}
+        </p>
+      `
+    ))
+    .join("");
 
   $("result-body").innerHTML = `
     ${card(
@@ -670,20 +1298,34 @@ function renderMun(d) {
 
     ${card(
       "Opening speech",
-      `<p style="white-space:pre-wrap">
-        ${esc(d.openingSpeech)}
-       </p>
-       <button class="smallbtn" id="copy-speech">
-         Copy speech
-       </button>`
+      `
+        <p style="white-space:pre-wrap">
+          ${esc(d.openingSpeech)}
+        </p>
+
+        <button
+          class="smallbtn"
+          id="copy-speech"
+        >
+          Copy speech
+        </button>
+      `
     )}
 
-    ${card("Country position",list(d.countryPosition))}
-    ${card("Policy priorities",list(d.policyPriorities))}
+    ${card(
+      "Country position",
+      list(d.countryPosition)
+    )}
+
+    ${card(
+      "Policy priorities",
+      list(d.policyPriorities)
+    )}
 
     ${card(
       "Other delegations",
-      dynamics || "<p>No other delegations were analysed.</p>"
+      dynamics ||
+      "<p>No other delegations were analysed.</p>"
     )}
 
     ${card(
@@ -691,14 +1333,24 @@ function renderMun(d) {
       list(d.negotiationStrategy)
     )}
 
-    ${card("Points of information",list(d.pois))}
-    ${card("Resolution ideas",list(d.resolutionIdeas))}
-    ${card("Research checklist",list(d.researchChecklist))}
+    ${card(
+      "Points of information",
+      list(d.pois)
+    )}
+
+    ${card(
+      "Resolution ideas",
+      list(d.resolutionIdeas)
+    )}
+
+    ${card(
+      "Research checklist",
+      list(d.researchChecklist)
+    )}
 
     <p class="hint">
-      Diplomatic positions can change.
-      Verify policies and relationships using
-      official government and UN sources.
+      Verify diplomatic positions using official
+      government and United Nations sources.
     </p>
   `;
 
@@ -707,6 +1359,7 @@ function renderMun(d) {
       await navigator.clipboard.writeText(
         d.openingSpeech || ""
       );
+
       $("copy-speech").textContent = "Copied!";
     } catch {
       $("copy-speech").textContent =
@@ -723,20 +1376,27 @@ function displayPreparation(prep) {
   currentTab = "case";
 
   $("result-heading").textContent = prep.title;
-  message("save-status","");
+
+  message("save-status", "");
 
   $("mode-debate").classList.toggle(
-    "active",prep.mode === "debate"
+    "active",
+    prep.mode === "debate"
   );
+
   $("mode-mun").classList.toggle(
-    "active",prep.mode === "mun"
+    "active",
+    prep.mode === "mun"
   );
 
   $("mode-debate").setAttribute(
-    "aria-pressed",String(prep.mode === "debate")
+    "aria-pressed",
+    String(prep.mode === "debate")
   );
+
   $("mode-mun").setAttribute(
-    "aria-pressed",String(prep.mode === "mun")
+    "aria-pressed",
+    String(prep.mode === "mun")
   );
 
   if (prep.mode === "mun") {
@@ -748,26 +1408,34 @@ function displayPreparation(prep) {
   showWorkspace();
 
   $("results").scrollIntoView({
-    behavior:"smooth"
+    behavior: "smooth"
   });
 }
 
 /* AI GENERATION */
 
 async function generate(
-  url,payload,buttonId,errorId,mode,title
+  url,
+  payload,
+  buttonId,
+  errorId,
+  mode,
+  title
 ) {
   const button = $(buttonId);
 
   button.disabled = true;
   button.textContent = "Building your preparation...";
-  message(errorId,"");
+
+  message(errorId, "");
 
   try {
-    const response = await fetch(url,{
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify(payload)
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
     });
 
     if (response.status === 429) {
@@ -784,31 +1452,39 @@ async function generate(
 
     const content = await response.json();
 
+    if (mode === "debate") {
+      content._debatrixSide = payload.side;
+    }
+
     displayPreparation({
-      id:crypto.randomUUID(),
+      id: crypto.randomUUID(),
       mode,
       title,
       content,
       ...(mode === "debate"
-        ? {side:payload.side}
+        ? { side: payload.side }
         : {}),
-      created_at:new Date().toISOString()
+      created_at: new Date().toISOString()
     });
 
-    await savePreparation(true);
+    await savePreparation();
 
-  } catch(error) {
+  } catch (error) {
     message(
       errorId,
       error.message || "Something went wrong."
     );
   } finally {
     button.disabled = false;
-    button.textContent = mode === "mun"
-      ? "Build my MUN prep ↗"
-      : "Make my case ↗";
+
+    button.textContent =
+      mode === "mun"
+        ? "Build my MUN prep ↗"
+        : "Make my case ↗";
   }
 }
+
+/* DEBATE GENERATION BUTTON */
 
 $("debate-go").onclick = () => {
   const motion = $("motion").value.trim();
@@ -818,6 +1494,7 @@ $("debate-go").onclick = () => {
       "debate-error",
       "Please enter a debate motion."
     );
+
     return;
   }
 
@@ -829,13 +1506,19 @@ $("debate-go").onclick = () => {
 
   generate(
     "/api/build",
-    {motion,side,level},
+    {
+      motion,
+      side,
+      level
+    },
     "debate-go",
     "debate-error",
     "debate",
     motion
   );
 };
+
+/* MODEL UN GENERATION BUTTON */
 
 $("mun-go").onclick = () => {
   const country = $("mun-country").value.trim();
@@ -848,12 +1531,18 @@ $("mun-go").onclick = () => {
       "mun-error",
       "Enter your country, committee and agenda."
     );
+
     return;
   }
 
   generate(
     "/api/mun",
-    {country,committee,agenda,otherCountries},
+    {
+      country,
+      committee,
+      agenda,
+      otherCountries
+    },
     "mun-go",
     "mun-error",
     "mun",
@@ -863,7 +1552,7 @@ $("mun-go").onclick = () => {
 
 /* SAVE PREPARATIONS */
 
-async function savePreparation(automatic=false) {
+async function savePreparation() {
   if (!currentPreparation) return;
 
   const prep = currentPreparation;
@@ -871,18 +1560,20 @@ async function savePreparation(automatic=false) {
   try {
     if (currentUser) {
       if (!db) {
-        throw new Error("Supabase is unavailable.");
+        throw new Error(
+          "Supabase is unavailable."
+        );
       }
 
-      const {error} = await db
+      const { error } = await db
         .from("preparations")
         .upsert({
-          id:prep.id,
-          user_id:currentUser.id,
-          mode:prep.mode,
-          title:prep.title,
-          content:prep.content,
-          created_at:prep.created_at
+          id: prep.id,
+          user_id: currentUser.id,
+          mode: prep.mode,
+          title: prep.title,
+          content: prep.content,
+          created_at: prep.created_at
         });
 
       if (error) throw error;
@@ -891,11 +1582,12 @@ async function savePreparation(automatic=false) {
         "save-status",
         "Saved to your account."
       );
+
     } else {
       const items = guestHistory();
 
       const index = items.findIndex(
-        x => x.id === prep.id
+        item => item.id === prep.id
       );
 
       if (index >= 0) {
@@ -911,7 +1603,8 @@ async function savePreparation(automatic=false) {
         "Saved on this device (guest mode)."
       );
     }
-  } catch(error) {
+
+  } catch (error) {
     message(
       "save-status",
       "Could not save: " +
@@ -920,10 +1613,504 @@ async function savePreparation(automatic=false) {
   }
 }
 
-$("save-btn").onclick = () => savePreparation();
-$("print-btn").onclick = () => window.print();
+$("save-btn").onclick = savePreparation;
 
-/* SUPABASE AUTHENTICATION */
+$("print-btn").onclick = () => {
+  window.print();
+};
+
+/* DOWNLOAD WORD QUICK REFERENCE */
+
+$("download-docx-btn").onclick = async () => {
+  const button = $("download-docx-btn");
+  const prep = currentPreparation;
+
+  if (!prep) {
+    alert(
+      "Generate a preparation first."
+    );
+
+    return;
+  }
+
+  if (!window.docx) {
+    alert(
+      "The Word document library could not load. " +
+      "Check your internet connection."
+    );
+
+    return;
+  }
+
+  button.disabled = true;
+  button.textContent =
+    "Creating Quick Reference...";
+
+  try {
+    const D = window.docx;
+    const children = [];
+
+    /* WORD DOCUMENT HELPERS */
+
+    function add(text, options = {}) {
+      children.push(
+        new D.Paragraph({
+          children: [
+            new D.TextRun({
+              text: String(text ?? ""),
+              bold: !!options.bold,
+              color: options.color || "242424",
+              size: options.size || 21
+            })
+          ],
+
+          spacing: {
+            before: options.before || 0,
+            after: options.after ?? 130
+          },
+
+          ...(options.heading
+            ? { heading: options.heading }
+            : {})
+        })
+      );
+    }
+
+    function heading(text) {
+      add(text, {
+        bold: true,
+        color: "304F17",
+        size: 28,
+        before: 320,
+        after: 140,
+        heading: D.HeadingLevel.HEADING_1
+      });
+    }
+
+    function subheading(text) {
+      add(text, {
+        bold: true,
+        color: "191B18",
+        size: 23,
+        before: 180,
+        after: 90,
+        heading: D.HeadingLevel.HEADING_2
+      });
+    }
+
+    function field(label, value) {
+      if (
+        value === undefined ||
+        value === null ||
+        value === ""
+      ) {
+        return;
+      }
+
+      children.push(
+        new D.Paragraph({
+          children: [
+            new D.TextRun({
+              text: label + ": ",
+              bold: true,
+              color: "304F17",
+              size: 21
+            }),
+
+            new D.TextRun({
+              text: String(value),
+              color: "242424",
+              size: 21
+            })
+          ],
+
+          spacing: {
+            after: 130
+          }
+        })
+      );
+    }
+
+    function bullets(items) {
+      if (!Array.isArray(items) || !items.length) {
+        add("No notes available.");
+        return;
+      }
+
+      items.forEach(item => {
+        children.push(
+          new D.Paragraph({
+            text: String(item ?? ""),
+            bullet: {
+              indent: 350
+            },
+            spacing: {
+              after: 100
+            }
+          })
+        );
+      });
+    }
+
+    /* DOCUMENT COVER */
+
+    add("DEBATRIX", {
+      bold: true,
+      color: "304F17",
+      size: 36,
+      after: 80
+    });
+
+    add(
+      prep.mode === "mun"
+        ? "MODEL UNITED NATIONS | QUICK REFERENCE"
+        : "DEBATE PREPARATION | QUICK REFERENCE",
+      {
+        bold: true,
+        color: "666666",
+        size: 18,
+        after: 200
+      }
+    );
+
+    add(
+      prep.title || "Preparation",
+      {
+        bold: true,
+        size: 32,
+        after: 250
+      }
+    );
+
+    add(
+      "Prepared with DEBATRIX • " +
+      new Date().toLocaleDateString(),
+      {
+        color: "777777",
+        size: 17
+      }
+    );
+
+    const data = prep.content || {};
+
+    /* MODEL UN QUICK REFERENCE */
+
+    if (prep.mode === "mun") {
+      heading("Agenda Overview");
+
+      add(
+        data.overview ||
+        "No overview available."
+      );
+
+      heading("Country Position");
+      bullets(data.countryPosition);
+
+      heading("Policy Priorities");
+      bullets(data.policyPriorities);
+
+      heading("Opening Speech");
+
+      add(
+        data.openingSpeech ||
+        "No speech available."
+      );
+
+      heading("Other Delegations");
+
+      (data.countryDynamics || []).forEach(item => {
+        subheading(
+          item.country || "Delegation"
+        );
+
+        field(
+          "Relationship",
+          item.relationship
+        );
+
+        field(
+          "Reason",
+          item.reason
+        );
+
+        field(
+          "Confidence",
+          item.confidence
+        );
+      });
+
+      heading("Negotiation Strategy");
+      bullets(data.negotiationStrategy);
+
+      heading("Points of Information");
+      bullets(data.pois);
+
+      heading("Resolution Ideas");
+      bullets(data.resolutionIdeas);
+
+      heading("Research Checklist");
+      bullets(data.researchChecklist);
+
+    } else {
+
+      /* DEBATE QUICK REFERENCE */
+
+      const quick = data.doodle || {};
+
+      heading("Understanding the Motion");
+
+      add(
+        data.framing ||
+        "No framing available."
+      );
+
+      heading("Opening & Core Case");
+
+      field(
+        "Opening hook",
+        quick.hook
+      );
+
+      subheading("Three Key Pillars");
+      bullets(quick.pillars);
+
+      heading("Key Arguments");
+
+      (data.points || []).forEach(
+        (point, index) => {
+          subheading(
+            (index + 1) +
+            ". " +
+            (point.title || "Argument")
+          );
+
+          field(
+            "Claim",
+            point.claim
+          );
+
+          field(
+            "Evidence",
+            point.evidence
+          );
+
+          field(
+            "Source",
+            point.source
+          );
+
+          field(
+            "Year",
+            point.year
+          );
+
+          field(
+            "Evidence strength",
+            point.strength
+          );
+
+          field(
+            "What to verify",
+            point.check
+          );
+        }
+      );
+
+      heading("Rebuttals & Responses");
+
+      (data.attacks || []).forEach(
+        (attack, index) => {
+          subheading(
+            "Rebuttal " + (index + 1)
+          );
+
+          field(
+            "They say",
+            attack.they_say
+          );
+
+          field(
+            "You reply",
+            attack.you_say
+          );
+
+          field(
+            "Research lead",
+            attack.source
+          );
+        }
+      );
+
+      heading("Quick Revision Notes");
+
+      subheading("Evidence to Verify");
+      bullets(quick.numbers);
+
+      subheading("Comebacks");
+      bullets(quick.comebacks);
+
+      subheading("Memorable Lines");
+      bullets(quick.zingers);
+
+      heading("Closing Statement");
+
+      add(
+        quick.closer ||
+        "No closing statement available."
+      );
+    }
+
+    /* FINAL REMINDER */
+
+    heading("Final Reminder");
+
+    add(
+      "Verify facts, sources and quotations " +
+      "before using this preparation in a " +
+      "debate or committee session."
+    );
+
+    /* CREATE WORD DOCUMENT */
+
+    const wordFile = new D.Document({
+      creator: "DEBATRIX",
+
+      title:
+        prep.title +
+        " — Quick Reference",
+
+      styles: {
+        default: {
+          document: {
+            run: {
+              font: "Aptos",
+              size: 21,
+              color: "242424"
+            },
+
+            paragraph: {
+              spacing: {
+                after: 120
+              }
+            }
+          }
+        }
+      },
+
+      sections: [
+        {
+          properties: {
+            page: {
+              margin: {
+                top: 900,
+                bottom: 900,
+                left: 950,
+                right: 950
+              }
+            }
+          },
+
+          headers: {
+            default: new D.Header({
+              children: [
+                new D.Paragraph({
+                  alignment:
+                    D.AlignmentType.RIGHT,
+
+                  children: [
+                    new D.TextRun({
+                      text:
+                        "DEBATRIX / QUICK REFERENCE",
+                      bold: true,
+                      color: "54782B",
+                      size: 17
+                    })
+                  ]
+                })
+              ]
+            })
+          },
+
+          footers: {
+            default: new D.Footer({
+              children: [
+                new D.Paragraph({
+                  alignment:
+                    D.AlignmentType.CENTER,
+
+                  children: [
+                    new D.TextRun({
+                      text:
+                        "DEBATRIX • Think critically. Verify your sources.",
+                      color: "777777",
+                      size: 16
+                    })
+                  ]
+                })
+              ]
+            })
+          },
+
+          children
+        }
+      ]
+    });
+
+    /* DOWNLOAD THE FILE */
+
+    const blob = await D.Packer.toBlob(
+      wordFile
+    );
+
+    const url = URL.createObjectURL(
+      blob
+    );
+
+    const link = document.createElement(
+      "a"
+    );
+
+    link.href = url;
+
+    link.download =
+      "DEBATRIX_" +
+      (prep.mode === "mun"
+        ? "MUN"
+        : "Debate") +
+      "_Quick_Reference.docx";
+
+    document.body.appendChild(link);
+
+    link.click();
+
+    link.remove();
+
+    setTimeout(
+      () => URL.revokeObjectURL(url),
+      60000
+    );
+
+    message(
+      "save-status",
+      "Quick Reference downloaded successfully."
+    );
+
+  } catch (error) {
+    message(
+      "save-status",
+      "Document export failed: " +
+      (error.message || "Please try again.")
+    );
+
+  } finally {
+    button.disabled = false;
+
+    button.textContent =
+      "Download Quick Reference (.docx) ↓";
+  }
+};
+
+/* LOGIN / SIGNUP */
 
 async function refreshUser() {
   if (!db) {
@@ -931,18 +2118,23 @@ async function refreshUser() {
       "account-status",
       "Guest mode. Login temporarily unavailable."
     );
+
     return;
   }
 
-  const {data,error} = await db.auth.getUser();
+  const { data, error } =
+    await db.auth.getUser();
 
-  currentUser = error ? null : data.user;
+  currentUser =
+    error ? null : data.user;
 
-  $("logout-btn").hidden = !currentUser;
+  $("logout-btn").hidden =
+    !currentUser;
 
-  $("auth-btn").textContent = currentUser
-    ? "My account"
-    : "Log in / Sign up";
+  $("auth-btn").textContent =
+    currentUser
+      ? "My account"
+      : "Log in / Sign up";
 
   message(
     "account-status",
@@ -952,6 +2144,8 @@ async function refreshUser() {
   );
 }
 
+/* OPEN AUTHENTICATION */
+
 $("auth-btn").onclick = () => {
   $("auth-panel").hidden = false;
   $("history-panel").hidden = true;
@@ -959,14 +2153,21 @@ $("auth-btn").onclick = () => {
   $("mun-panel").hidden = true;
   $("results").hidden = true;
 
-  message("auth-message","");
+  message("auth-message", "");
 };
 
 /* BACK TO HOME */
+
 $("close-auth").onclick = () => {
   showWorkspace();
-  window.scrollTo({top:0,behavior:"smooth"});
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
 };
+
+/* SIGN UP */
 
 $("signup-btn").onclick = async () => {
   if (!db) {
@@ -976,8 +2177,11 @@ $("signup-btn").onclick = async () => {
     );
   }
 
-  const email = $("auth-email").value.trim();
-  const password = $("auth-password").value;
+  const email =
+    $("auth-email").value.trim();
+
+  const password =
+    $("auth-password").value;
 
   if (!email || password.length < 8) {
     return message(
@@ -989,13 +2193,16 @@ $("signup-btn").onclick = async () => {
   $("signup-btn").disabled = true;
 
   try {
-    const {data,error} = await db.auth.signUp({
-      email,
-      password,
-      options:{
-        emailRedirectTo:window.location.origin
-      }
-    });
+    const { data, error } =
+      await db.auth.signUp({
+        email,
+        password,
+
+        options: {
+          emailRedirectTo:
+            window.location.origin
+        }
+      });
 
     if (error) throw error;
 
@@ -1008,12 +2215,18 @@ $("signup-btn").onclick = async () => {
 
     await refreshUser();
 
-  } catch(error) {
-    message("auth-message",error.message);
+  } catch (error) {
+    message(
+      "auth-message",
+      error.message
+    );
+
   } finally {
     $("signup-btn").disabled = false;
   }
 };
+
+/* LOG IN */
 
 $("login-btn").onclick = async () => {
   if (!db) {
@@ -1026,30 +2239,46 @@ $("login-btn").onclick = async () => {
   $("login-btn").disabled = true;
 
   try {
-    const {error} = await db.auth.signInWithPassword({
-      email:$("auth-email").value.trim(),
-      password:$("auth-password").value
-    });
+    const { error } =
+      await db.auth.signInWithPassword({
+        email:
+          $("auth-email").value.trim(),
+
+        password:
+          $("auth-password").value
+      });
 
     if (error) throw error;
 
     await refreshUser();
+
     showWorkspace();
 
-  } catch(error) {
-    message("auth-message",error.message);
+  } catch (error) {
+    message(
+      "auth-message",
+      error.message
+    );
+
   } finally {
     $("login-btn").disabled = false;
   }
 };
 
+/* LOG OUT */
+
 $("logout-btn").onclick = async () => {
   if (!db) return;
 
-  const {error} = await db.auth.signOut();
+  const { error } =
+    await db.auth.signOut();
 
   if (error) {
-    alert("Could not log out: " + error.message);
+    alert(
+      "Could not log out: " +
+      error.message
+    );
+
     return;
   }
 
@@ -1057,29 +2286,38 @@ $("logout-btn").onclick = async () => {
   currentPreparation = null;
 
   await refreshUser();
+
   showWorkspace();
 };
 
+/* AUTH STATE CHANGES */
+
 if (db) {
-  db.auth.onAuthStateChange((_event,session) => {
-    currentUser = session?.user || null;
+  db.auth.onAuthStateChange(
+    (_event, session) => {
+      currentUser =
+        session?.user || null;
 
-    $("logout-btn").hidden = !currentUser;
+      $("logout-btn").hidden =
+        !currentUser;
 
-    $("auth-btn").textContent = currentUser
-      ? "My account"
-      : "Log in / Sign up";
+      $("auth-btn").textContent =
+        currentUser
+          ? "My account"
+          : "Log in / Sign up";
 
-    message(
-      "account-status",
-      currentUser
-        ? "Signed in as " + currentUser.email
-        : "Guest mode — no login required."
-    );
-  });
+      message(
+        "account-status",
+        currentUser
+          ? "Signed in as " +
+            currentUser.email
+          : "Guest mode — no login required."
+      );
+    }
+  );
 }
 
-/* PREPARATION HISTORY */
+/* LOAD SAVED HISTORY */
 
 async function loadHistory() {
   message(
@@ -1093,15 +2331,22 @@ async function loadHistory() {
     let items;
 
     if (currentUser) {
-      const {data,error} = await db
-        .from("preparations")
-        .select("id,mode,title,content,created_at")
-        .order("created_at",{ascending:false})
-        .limit(100);
+      const { data, error } =
+        await db
+          .from("preparations")
+          .select(
+            "id,mode,title,content,created_at"
+          )
+          .order(
+            "created_at",
+            { ascending: false }
+          )
+          .limit(100);
 
       if (error) throw error;
 
       items = data || [];
+
     } else {
       items = guestHistory();
     }
@@ -1114,82 +2359,129 @@ async function loadHistory() {
     );
 
     items.forEach(prep => {
-      const item = document.createElement("div");
+      const item =
+        document.createElement("div");
+
       item.className = "history-item";
 
-      const details = document.createElement("div");
+      const details =
+        document.createElement("div");
 
-      const title = document.createElement("strong");
+      const title =
+        document.createElement("strong");
+
       title.textContent = prep.title;
 
-      const description = document.createElement("p");
+      const description =
+        document.createElement("p");
 
       description.textContent =
         (prep.mode === "mun"
           ? "Model UN"
           : "Debate Prep") +
         " · " +
-        new Date(prep.created_at).toLocaleDateString();
+        new Date(
+          prep.created_at
+        ).toLocaleDateString();
 
-      details.append(title,description);
+      details.append(
+        title,
+        description
+      );
 
-      const actions = document.createElement("div");
-      actions.className = "history-actions";
+      const actions =
+        document.createElement("div");
 
-      const open = document.createElement("button");
+      actions.className =
+        "history-actions";
+
+      /* OPEN PREPARATION */
+
+      const open =
+        document.createElement("button");
+
       open.className = "smallbtn";
       open.textContent = "Open";
 
-      open.onclick = () => displayPreparation(prep);
+      open.onclick = () => {
+        displayPreparation(prep);
+      };
 
-      const remove = document.createElement("button");
+      /* DELETE PREPARATION */
+
+      const remove =
+        document.createElement("button");
+
       remove.className = "smallbtn";
       remove.textContent = "Delete";
 
       remove.onclick = async () => {
-        if (!confirm("Delete this preparation?")) {
+        if (
+          !confirm(
+            "Delete this preparation?"
+          )
+        ) {
           return;
         }
 
         try {
           if (currentUser) {
-            const {error} = await db
-              .from("preparations")
-              .delete()
-              .eq("id",prep.id);
+            const { error } =
+              await db
+                .from("preparations")
+                .delete()
+                .eq(
+                  "id",
+                  prep.id
+                );
 
             if (error) throw error;
+
           } else {
             writeGuestHistory(
               guestHistory().filter(
-                x => x.id !== prep.id
+                item =>
+                  item.id !== prep.id
               )
             );
           }
 
           await loadHistory();
 
-        } catch(error) {
+        } catch (error) {
           message(
             "history-message",
-            "Delete failed: " + error.message
+            "Delete failed: " +
+            error.message
           );
         }
       };
 
-      actions.append(open,remove);
-      item.append(details,actions);
+      actions.append(
+        open,
+        remove
+      );
 
-      $("history-list").appendChild(item);
+      item.append(
+        details,
+        actions
+      );
+
+      $("history-list").appendChild(
+        item
+      );
     });
 
-  } catch(error) {
+  } catch (error) {
     message(
       "history-message",
-      "Could not load history: " + error.message
+      "Could not load history: " +
+      error.message
     );
   }
 }
+
+/* OPEN HISTORY */
 
 $("history-btn").onclick = async () => {
   $("auth-panel").hidden = true;
@@ -1199,24 +2491,31 @@ $("history-btn").onclick = async () => {
   $("history-panel").hidden = false;
 
   $("import-btn").hidden =
-    !currentUser || guestHistory().length === 0;
+    !currentUser ||
+    guestHistory().length === 0;
 
   message(
     "history-description",
     currentUser
       ? "Your saved preparations, synced to your account."
-      : "Guest history is stored only in this browser. Clearing browser data may erase it."
+      : "Guest history is stored only in this browser."
   );
 
   await loadHistory();
 };
 
+/* CLOSE HISTORY */
+
 $("close-history").onclick = () => {
   showWorkspace();
-  window.scrollTo({top:0,behavior:"smooth"});
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
 };
 
-/* IMPORT GUEST HISTORY */
+/* IMPORT GUEST PREPARATIONS */
 
 $("import-btn").onclick = async () => {
   if (!currentUser || !db) return;
@@ -1233,18 +2532,19 @@ $("import-btn").onclick = async () => {
   );
 
   try {
-    const rows = items.map(p => ({
-      id:p.id,
-      user_id:currentUser.id,
-      mode:p.mode,
-      title:p.title,
-      content:p.content,
-      created_at:p.created_at
+    const rows = items.map(prep => ({
+      id: prep.id,
+      user_id: currentUser.id,
+      mode: prep.mode,
+      title: prep.title,
+      content: prep.content,
+      created_at: prep.created_at
     }));
 
-    const {error} = await db
-      .from("preparations")
-      .upsert(rows);
+    const { error } =
+      await db
+        .from("preparations")
+        .upsert(rows);
 
     if (error) throw error;
 
@@ -1259,17 +2559,23 @@ $("import-btn").onclick = async () => {
       "Guest preparations imported successfully."
     );
 
-  } catch(error) {
+  } catch (error) {
     message(
       "history-message",
-      "Import failed: " + error.message
+      "Import failed: " +
+      error.message
     );
+
   } finally {
     $("import-btn").disabled = false;
   }
 };
 
+/* INITIALIZE */
+
 refreshUser();
+
 </script>
 </body>
 </html>
+
