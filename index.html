@@ -25,7 +25,6 @@
     }
 
     * { box-sizing: border-box; }
-
     [hidden] { display: none !important; }
 
     body {
@@ -311,7 +310,6 @@
     .result-card p { margin: 8px 0; }
     .result-card ul { padding-left: 22px; }
     .result-card li { margin: 7px 0; }
-
     .result-card a { color: #496c22; }
 
     .result-title {
@@ -365,8 +363,6 @@
 
     .auth-box input { margin-bottom: 13px; }
     .auth-box .primary { margin-top: 8px; }
-
-    /* PASSWORD RECOVERY */
 
     .text-button {
       display: inline-block;
@@ -427,21 +423,10 @@
 
     @media (max-width: 600px) {
       main { padding: 18px 15px 40px; }
-
       .row { grid-template-columns: 1fr; }
-
-      .top-actions {
-        width: 100%;
-        margin-left: 0;
-      }
-
+      .top-actions { width: 100%; margin-left: 0; }
       .modes { width: 100%; }
-
-      .mode {
-        flex: 1;
-        padding: 10px;
-      }
-
+      .mode { flex: 1; padding: 10px; }
       .subtitle { font-size: 15px; }
       .segment label { font-size: 12px; }
     }
@@ -479,56 +464,39 @@
 
   <header class="hero">
     <p class="eyebrow">Think fast. Make your case.</p>
-
     <h1>Walk in with <span class="highlight">a case.</span></h1>
-
     <p class="subtitle">
       Sharper arguments. Smarter preparation.
       From the debate floor to the Model UN committee room.
       Prepare with AI, then make the ideas your own.
     </p>
-
-    <p class="hint" id="account-status">
-      Guest mode — no login required.
-    </p>
+    <p class="hint" id="account-status">Guest mode — no login required.</p>
   </header>
 
   <div class="modes" aria-label="Preparation modes">
-    <button class="mode active" id="mode-debate" aria-pressed="true">
-      ⚡ Debate Prep
-    </button>
-    <button class="mode" id="mode-mun" aria-pressed="false">
-      🌐 Model UN
-    </button>
+    <button class="mode active" id="mode-debate" aria-pressed="true">⚡ Debate Prep</button>
+    <button class="mode" id="mode-mun" aria-pressed="false">🌐 Model UN</button>
   </div>
 
   <!-- DEBATE PREPARATION -->
 
   <section class="panel" id="debate-panel">
     <label for="motion">What are we arguing about?</label>
-
-    <textarea id="motion" maxlength="300"
-      placeholder="Enter your debate motion..."></textarea>
-
+    <textarea id="motion" maxlength="300" placeholder="Enter your debate motion..."></textarea>
     <p class="hint">Use the exact motion if you have one.</p>
-
     <div class="chips" id="chips"></div>
 
     <div class="row">
       <div>
         <label>Which side are you on?</label>
-
         <div class="segment" role="radiogroup" aria-label="Debate side">
           <input type="radio" name="side" id="for" value="For" checked>
           <label for="for">For</label>
-
           <input type="radio" name="side" id="against" value="Against">
           <label for="against">Against</label>
-
           <input type="radio" name="side" id="neutral" value="Neutral">
           <label for="neutral">Neutral</label>
         </div>
-
         <p class="hint">Neutral explores arguments on both sides.</p>
       </div>
 
@@ -572,11 +540,8 @@
 
     <div style="margin-top:22px">
       <label for="mun-others">Other countries / delegations</label>
-      <textarea id="mun-others" maxlength="500"
-        placeholder="e.g. China, USA, Brazil"></textarea>
-      <p class="hint">
-        Separate countries with commas. Not every country must be an opponent.
-      </p>
+      <textarea id="mun-others" maxlength="500" placeholder="e.g. China, USA, Brazil"></textarea>
+      <p class="hint">Separate countries with commas. Not every country must be an opponent.</p>
     </div>
 
     <button class="primary" id="mun-go">Build my MUN prep ↗</button>
@@ -592,9 +557,7 @@
     <div class="toolbar">
       <button class="smallbtn" id="save-btn">Save preparation</button>
       <button class="smallbtn" id="print-btn">Print</button>
-      <button class="smallbtn" id="download-docx-btn">
-        Download Quick Reference (.docx) ↓
-      </button>
+      <button class="smallbtn" id="download-docx-btn">Download Quick Reference (.docx) ↓</button>
     </div>
 
     <p class="hint" id="save-status" role="status"></p>
@@ -606,66 +569,40 @@
   <section class="panel" id="auth-panel" hidden>
     <p class="eyebrow">Your work. Your account.</p>
     <h2>Welcome to DEBATRIX.</h2>
+    <p class="hint">Sign in to sync your preparation history across devices. Or continue as a guest.</p>
 
-    <p class="hint">
-      Sign in to sync your preparation history across devices.
-      Or continue as a guest.
-    </p>
-
-    <button class="smallbtn" id="close-auth" style="margin-top:18px">
-      ← Back to Home
-    </button>
+    <button class="smallbtn" id="close-auth" style="margin-top:18px">← Back to Home</button>
 
     <div class="auth-box" id="login-signup-box">
       <label for="auth-email">Email</label>
-      <input type="email" id="auth-email" autocomplete="email"
-        placeholder="you@example.com">
+      <input type="email" id="auth-email" autocomplete="email" placeholder="you@example.com">
 
       <label for="auth-password">Password</label>
-      <input type="password" id="auth-password"
-        autocomplete="current-password" minlength="8"
-        placeholder="At least 8 characters">
+      <input type="password" id="auth-password" autocomplete="current-password" minlength="8" placeholder="At least 8 characters">
 
       <div class="toolbar">
         <button class="primary" id="login-btn">Log in</button>
         <button class="primary" id="signup-btn">Sign up</button>
       </div>
 
-      <button type="button" class="text-button" id="forgot-password-btn">
-        Forgot password?
-      </button>
+      <button type="button" class="text-button" id="forgot-password-btn">Forgot password?</button>
 
-      <p class="hint">
-        Use an email address you can access for confirmation and recovery.
-      </p>
-
+      <p class="hint">Use an email address you can access for confirmation and recovery.</p>
       <p id="auth-message" role="status" aria-live="polite"></p>
     </div>
-
-    <!-- This form appears after the recovery link is verified. -->
 
     <div class="auth-box" id="reset-password-box" hidden>
       <p class="eyebrow">ACCOUNT RECOVERY</p>
       <h3>Choose a new password</h3>
-
-      <p class="hint">
-        Enter a new password and confirm it below.
-      </p>
+      <p class="hint">Enter a new password and confirm it below.</p>
 
       <label for="new-password">New password</label>
-      <input type="password" id="new-password"
-        autocomplete="new-password" minlength="8"
-        placeholder="At least 8 characters">
+      <input type="password" id="new-password" autocomplete="new-password" minlength="8" placeholder="At least 8 characters">
 
       <label for="confirm-new-password">Confirm new password</label>
-      <input type="password" id="confirm-new-password"
-        autocomplete="new-password" minlength="8"
-        placeholder="Enter the password again">
+      <input type="password" id="confirm-new-password" autocomplete="new-password" minlength="8" placeholder="Enter the password again">
 
-      <button type="button" class="primary" id="update-password-btn">
-        Set new password
-      </button>
-
+      <button type="button" class="primary" id="update-password-btn">Set new password</button>
       <p id="reset-password-message" role="status" aria-live="polite"></p>
     </div>
   </section>
@@ -677,9 +614,7 @@
     <p class="hint" id="history-description"></p>
 
     <div class="toolbar">
-      <button class="smallbtn" id="import-btn" hidden>
-        Import guest history to account
-      </button>
+      <button class="smallbtn" id="import-btn" hidden>Import guest history to account</button>
       <button class="smallbtn" id="close-history">← Back to Home</button>
     </div>
 
@@ -687,9 +622,7 @@
     <div id="history-list"></div>
   </section>
 
-  <footer>
-    DEBATRIX · Built for better arguments · Created by Siddharth.N
-  </footer>
+  <footer>DEBATRIX · Built for better arguments · Created by Siddharth.N</footer>
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
@@ -700,19 +633,23 @@
 
 /* SUPABASE */
 
-const SUPABASE_URL =
-  "https://vtsyhccmlhdjhvakjhsl.supabase.co";
+const SUPABASE_URL = "https://vtsyhccmlhdjhvakjhsl.supabase.co";
+const SUPABASE_KEY = "sb_publishable_LQOBXRrnUTpdwHvRb_s3pw_Oa_aqx8z";
 
-const SUPABASE_KEY =
-  "sb_publishable_LQOBXRrnUTpdwHvRb_s3pw_Oa_aqx8z";
+const $ = id => document.getElementById(id);
 
 const db = window.supabase
-  ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
+  ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+      auth: {
+        flowType: "pkce",
+        detectSessionInUrl: false,
+        persistSession: true,
+        autoRefreshToken: true
+      }
+    })
   : null;
 
 /* UTILITIES */
-
-const $ = id => document.getElementById(id);
 
 const esc = value => String(value ?? "").replace(
   /[&<>"']/g,
@@ -814,11 +751,9 @@ function card(title, content) {
 function list(items) {
   return `
     <ul>
-      ${
-        (Array.isArray(items) ? items : [])
-          .map(item => `<li>${esc(item)}</li>`)
-          .join("")
-      }
+      ${(Array.isArray(items) ? items : [])
+        .map(item => `<li>${esc(item)}</li>`)
+        .join("")}
     </ul>
   `;
 }
@@ -878,9 +813,7 @@ function renderDebate(d) {
 
   $("result-body").innerHTML = `
     <div class="result-tabs">
-      <button class="result-tab" data-tab="case">
-        ${neutral ? "Both sides" : "Your case"}
-      </button>
+      <button class="result-tab" data-tab="case">${neutral ? "Both sides" : "Your case"}</button>
       <button class="result-tab" data-tab="attacks">Attacks & defences</button>
       <button class="result-tab" data-tab="quick">Quick Reference</button>
     </div>
@@ -943,9 +876,7 @@ function renderMun(d) {
     ${card("Points of information", list(d.pois))}
     ${card("Resolution ideas", list(d.resolutionIdeas))}
     ${card("Research checklist", list(d.researchChecklist))}
-    <p class="hint">
-      Verify diplomatic positions using official government and United Nations sources.
-    </p>
+    <p class="hint">Verify diplomatic positions using official government and United Nations sources.</p>
   `;
 
   $("copy-speech").onclick = async () => {
@@ -981,7 +912,6 @@ function displayPreparation(prep) {
   }
 
   showWorkspace();
-
   $("results").scrollIntoView({ behavior: "smooth" });
 }
 
@@ -989,7 +919,6 @@ function displayPreparation(prep) {
 
 async function generate(url, payload, buttonId, errorId, mode, title) {
   const button = $(buttonId);
-
   button.disabled = true;
   button.textContent = "Building your preparation...";
   message(errorId, "");
@@ -1102,7 +1031,6 @@ async function savePreparation() {
       });
 
       if (error) throw error;
-
       message("save-status", "Saved to your account.");
     } else {
       const items = guestHistory();
@@ -1220,10 +1148,7 @@ $("download-docx-btn").onclick = async () => {
     }
 
     add("DEBATRIX", {
-      bold: true,
-      color: "304F17",
-      size: 36,
-      after: 80
+      bold: true, color: "304F17", size: 36, after: 80
     });
 
     add(
@@ -1233,11 +1158,12 @@ $("download-docx-btn").onclick = async () => {
       { bold: true, color: "666666", size: 18, after: 200 }
     );
 
-    add(prep.title || "Preparation", { bold: true, size: 32, after: 250 });
+    add(prep.title || "Preparation", {
+      bold: true, size: 32, after: 250
+    });
 
     add("Prepared with DEBATRIX • " + new Date().toLocaleDateString(), {
-      color: "777777",
-      size: 17
+      color: "777777", size: 17
     });
 
     const data = prep.content || {};
@@ -1382,7 +1308,6 @@ $("download-docx-btn").onclick = async () => {
     link.remove();
 
     setTimeout(() => URL.revokeObjectURL(url), 60000);
-
     message("save-status", "Quick Reference downloaded successfully.");
   } catch (error) {
     message("save-status", "Document export failed: " + (error.message || "Please try again."));
@@ -1414,29 +1339,29 @@ async function refreshUser() {
   );
 }
 
-/* OPEN LOGIN */
+/* AUTH PANEL */
 
-$("auth-btn").onclick = () => {
+function openAuthPanel() {
   $("auth-panel").hidden = false;
   $("history-panel").hidden = true;
   $("debate-panel").hidden = true;
   $("mun-panel").hidden = true;
   $("results").hidden = true;
+}
 
-  $("login-signup-box").hidden = recoveryMode;
-  $("reset-password-box").hidden = !recoveryMode;
-
+$("auth-btn").onclick = () => {
+  recoveryMode = false;
+  openAuthPanel();
+  $("login-signup-box").hidden = false;
+  $("reset-password-box").hidden = true;
   message("auth-message", "");
+  message("reset-password-message", "");
 };
 
 $("close-auth").onclick = () => {
   recoveryMode = false;
   $("reset-password-box").hidden = true;
   $("login-signup-box").hidden = false;
-  $("forgot-password-btn").hidden = false;
-  $("login-btn").hidden = false;
-  $("signup-btn").hidden = false;
-
   showWorkspace();
   window.scrollTo({ top: 0, behavior: "smooth" });
 };
@@ -1445,14 +1370,16 @@ $("close-auth").onclick = () => {
 
 $("signup-btn").onclick = async () => {
   if (!db) {
-    return message("auth-message", "Authentication is unavailable.");
+    message("auth-message", "Authentication is unavailable.");
+    return;
   }
 
   const email = $("auth-email").value.trim();
   const password = $("auth-password").value;
 
   if (!email || password.length < 8) {
-    return message("auth-message", "Enter an email and a password of at least 8 characters.");
+    message("auth-message", "Enter an email and a password of at least 8 characters.");
+    return;
   }
 
   $("signup-btn").disabled = true;
@@ -1487,7 +1414,8 @@ $("signup-btn").onclick = async () => {
 
 $("login-btn").onclick = async () => {
   if (!db) {
-    return message("auth-message", "Authentication is unavailable.");
+    message("auth-message", "Authentication is unavailable.");
+    return;
   }
 
   $("login-btn").disabled = true;
@@ -1510,11 +1438,12 @@ $("login-btn").onclick = async () => {
   }
 };
 
-/* FORGOT PASSWORD: SEND RECOVERY EMAIL */
+/* FORGOT PASSWORD */
 
 $("forgot-password-btn").onclick = async () => {
   if (!db) {
-    return message("auth-message", "Authentication is unavailable.");
+    message("auth-message", "Authentication is unavailable.");
+    return;
   }
 
   const email = $("auth-email").value.trim();
@@ -1529,28 +1458,32 @@ $("forgot-password-btn").onclick = async () => {
   button.disabled = true;
   message("auth-message", "Sending recovery email...");
 
+  /*
+    The reset=1 marker identifies this as a password-recovery redirect.
+    The Supabase Redirect URLs settings must allow this website URL.
+  */
+  const redirectTo =
+    window.location.origin + window.location.pathname + "?reset=1";
+
   try {
     const { error } = await db.auth.resetPasswordForEmail(email, {
-      redirectTo: window.location.origin + window.location.pathname
+      redirectTo
     });
 
     if (error) throw error;
 
     message(
       "auth-message",
-      "If an account exists for that email, a recovery link will be sent. Check your inbox and spam folder."
+      "If an account exists for that email, a recovery link has been sent. Check your inbox and spam folder."
     );
   } catch (error) {
-    message(
-      "auth-message",
-      error.message || "Could not send the recovery email."
-    );
+    message("auth-message", error.message || "Could not send the recovery email.");
   } finally {
     button.disabled = false;
   }
 };
 
-/* SHOW PASSWORD RECOVERY FORM */
+/* PASSWORD RECOVERY SCREEN */
 
 function showPasswordRecovery() {
   recoveryMode = true;
@@ -1564,56 +1497,55 @@ function showPasswordRecovery() {
   $("login-signup-box").hidden = true;
   $("reset-password-box").hidden = false;
 
-  message("reset-password-message", "");
-  message("auth-message", "Choose a new password for your account.");
+  message("auth-message", "");
+  message(
+    "reset-password-message",
+    "Recovery link verified. Enter your new password below."
+  );
 
   window.scrollTo({ top: 0, behavior: "smooth" });
-  $("new-password").focus();
 }
 
 /* UPDATE PASSWORD */
 
 $("update-password-btn").onclick = async () => {
   if (!db) {
-    return message("reset-password-message", "Authentication is unavailable.");
+    message("reset-password-message", "Authentication is unavailable.");
+    return;
   }
 
   const password = $("new-password").value;
   const confirmation = $("confirm-new-password").value;
 
   if (password.length < 8) {
-    return message(
-      "reset-password-message",
-      "Your new password must be at least 8 characters."
-    );
+    message("reset-password-message", "Your new password must be at least 8 characters.");
+    return;
   }
 
   if (password !== confirmation) {
-    return message(
-      "reset-password-message",
-      "The passwords do not match."
-    );
+    message("reset-password-message", "The passwords do not match.");
+    return;
   }
 
   const button = $("update-password-btn");
   button.disabled = true;
-
   message("reset-password-message", "Updating password...");
 
   try {
+    /*
+      This succeeds only if Supabase has a valid recovery session.
+      We deliberately do not sign out until updateUser has succeeded.
+    */
     const { error } = await db.auth.updateUser({ password });
 
     if (error) throw error;
 
     $("new-password").value = "";
     $("confirm-new-password").value = "";
-
     recoveryMode = false;
+
     $("reset-password-box").hidden = true;
     $("login-signup-box").hidden = false;
-    $("forgot-password-btn").hidden = false;
-    $("login-btn").hidden = false;
-    $("signup-btn").hidden = false;
 
     message(
       "auth-message",
@@ -1630,7 +1562,8 @@ $("update-password-btn").onclick = async () => {
   } catch (error) {
     message(
       "reset-password-message",
-      error.message || "Could not update your password."
+      "Could not update the password: " +
+      (error.message || "The recovery link may have expired. Request a new one.")
     );
   } finally {
     button.disabled = false;
@@ -1656,6 +1589,125 @@ $("logout-btn").onclick = async () => {
   showWorkspace();
 };
 
+/* EXPLICIT RECOVERY LINK HANDLING */
+
+async function processRecoveryLink() {
+  if (!db) return;
+
+  const params = new URLSearchParams(window.location.search);
+  const hashParams = new URLSearchParams(
+    window.location.hash.replace(/^#/, "")
+  );
+
+  const code = params.get("code");
+  const resetMarker = params.get("reset") === "1";
+  const queryType = params.get("type");
+  const hashType = hashParams.get("type");
+
+  /*
+    PKCE links use ?code=...
+    Exchange the code explicitly because automatic URL detection is disabled.
+  */
+  if (code) {
+    try {
+      const { error } = await db.auth.exchangeCodeForSession(code);
+
+      if (error) throw error;
+
+      /*
+        The recovery redirect uses ?reset=1, so this marker is retained
+        even if Supabase does not add type=recovery to the URL.
+      */
+      if (resetMarker || queryType === "recovery") {
+        showPasswordRecovery();
+      } else {
+        /*
+          Do not display the password-reset form for ordinary sign-in
+          or email-confirmation links.
+        */
+        await refreshUser();
+      }
+
+      return;
+    } catch (error) {
+      openAuthPanel();
+      $("login-signup-box").hidden = false;
+      $("reset-password-box").hidden = true;
+
+      message(
+        "auth-message",
+        "This recovery link could not be verified or has expired. Request a new password-reset email. Details: " +
+        (error.message || "Verification failed.")
+      );
+
+      return;
+    }
+  }
+
+  /*
+    Support older token-hash links if Supabase sends a recovery session
+    directly in the URL fragment.
+  */
+  const accessToken = hashParams.get("access_token");
+  const refreshToken = hashParams.get("refresh_token");
+  const isRecoveryHash =
+    hashType === "recovery" ||
+    queryType === "recovery" ||
+    resetMarker;
+
+  if (accessToken && refreshToken && isRecoveryHash) {
+    try {
+      const { error } = await db.auth.setSession({
+        access_token: accessToken,
+        refresh_token: refreshToken
+      });
+
+      if (error) throw error;
+
+      showPasswordRecovery();
+
+      /*
+        Remove tokens from the visible address bar after establishing
+        the session. Do not remove the URL before setSession succeeds.
+      */
+      window.history.replaceState(
+        {},
+        document.title,
+        window.location.pathname
+      );
+
+      return;
+    } catch (error) {
+      openAuthPanel();
+      $("login-signup-box").hidden = false;
+      $("reset-password-box").hidden = true;
+
+      message(
+        "auth-message",
+        "This recovery link could not be verified or has expired. Request a new one. " +
+        (error.message || "")
+      );
+
+      return;
+    }
+  }
+
+  /*
+    A recovery marker without a code or valid session is not proof of
+    recovery. Do not pretend the user is verified.
+  */
+  if (resetMarker || queryType === "recovery" || hashType === "recovery") {
+    openAuthPanel();
+    $("login-signup-box").hidden = false;
+    $("reset-password-box").hidden = true;
+
+    message(
+      "auth-message",
+      "No valid recovery session was found. Request a new reset email and open its newest link in the same browser."
+    );
+  }
+}
+
 /* AUTH STATE CHANGES */
 
 if (db) {
@@ -1663,7 +1715,9 @@ if (db) {
     currentUser = session?.user || null;
 
     $("logout-btn").hidden = !currentUser;
-    $("auth-btn").textContent = currentUser ? "My account" : "Log in / Sign up";
+    $("auth-btn").textContent = currentUser
+      ? "My account"
+      : "Log in / Sign up";
 
     message(
       "account-status",
@@ -1828,8 +1882,12 @@ $("import-btn").onclick = async () => {
 
 /* INITIALIZE */
 
-refreshUser();
+(async () => {
+  await refreshUser();
+  await processRecoveryLink();
+})();
 </script>
 </body>
 </html>
+
 
