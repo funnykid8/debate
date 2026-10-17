@@ -1,2250 +1,931 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="google-site-verification" content="0BZhLHHEII5lHmITVcFwtgOliB76DINKIsouy09KsGk">
-<meta name="msvalidate.01" content="AB4AFA3135DB96A6D24EB966B073B214">
-<meta name="theme-color" content="#f7f4ec">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090b0f">
+<meta name="description" content="DEBATRIX helps students understand topics, build stronger arguments and prepare for Debate and Model United Nations.">
 <title>DEBATRIX — Make Your Case</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
 <style>
-:root {
-  --bg:#f7f4ec;
-  --card:#fffdf7;
-  --ink:#191b18;
-  --soft:#62665b;
-  --line:#d9d9cd;
-  --lime:#c6f36a;
-  --red:#b42318;
+:root{
+  --bg:#090b0f;
+  --surface:#101419;
+  --raised:#151a20;
+  --border:#29333a;
+  --text:#f2f5f7;
+  --muted:#98a3ad;
+  --accent:#c7ff4f;
+  --blue:#9bcaff;
+  --font:"DM Sans",sans-serif;
+  --display:"Manrope",sans-serif;
 }
 *{box-sizing:border-box}
-[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
 body{
   margin:0;
   background:var(--bg);
-  background-image:radial-gradient(#c8c9bb .7px,transparent .7px);
-  background-size:17px 17px;
-  color:var(--ink);
-  font:15px/1.6 "DM Sans",sans-serif;
+  color:var(--text);
+  font-family:var(--font);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
 }
-button,input,textarea,select{font:inherit}
+button,a{font:inherit}
 button{cursor:pointer}
-button:disabled{opacity:.6;cursor:wait}
-button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{
-  outline:3px solid #8ebd37;
-  outline-offset:2px;
+a{color:inherit;text-decoration:none}
+button:focus-visible,a:focus-visible{
+  outline:2px solid var(--accent);
+  outline-offset:4px;
 }
-main{max-width:960px;margin:auto;padding:25px 20px 60px}
-.topbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.logo{
-  width:43px;height:43px;display:grid;place-items:center;
-  background:var(--lime);border:2px solid var(--ink);
-  border-radius:12px;box-shadow:3px 3px var(--ink);
-  font:800 19px Manrope;transform:rotate(-5deg);
+.container{
+  width:min(100% - 80px,1240px);
+  margin-inline:auto;
 }
-.brand{font:800 19px Manrope;letter-spacing:.08em}
-.top-actions{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
-.smallbtn{
-  padding:9px 12px;background:var(--card);
-  border:1.5px solid var(--ink);border-radius:9px;
-  font-size:12px;font-weight:800;
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:100;
+  height:76px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  padding:0 max(40px,calc((100vw - 1240px)/2));
+  border-bottom:1px solid #ffffff12;
+  background:#090b0ff0;
+  backdrop-filter:blur(18px);
 }
-.smallbtn:hover{background:var(--lime)}
-.hero{padding:45px 0 32px}
+.brand{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  font-family:var(--display);
+  font-size:14px;
+  font-weight:800;
+  letter-spacing:.14em;
+  white-space:nowrap;
+}
+.brand-mark{
+  display:grid;
+  place-items:center;
+  width:37px;
+  height:37px;
+  border-radius:10px;
+  background:var(--accent);
+  color:#10140a;
+  font-size:24px;
+  letter-spacing:-.08em;
+}
+.desktop-nav{
+  display:flex;
+  align-items:center;
+  gap:29px;
+}
+.desktop-nav>a:not(.btn){
+  color:#aab4bc;
+  font-size:12px;
+  transition:color .2s;
+}
+.desktop-nav>a:hover{color:var(--accent)}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  min-height:46px;
+  padding:12px 19px;
+  border:1px solid transparent;
+  border-radius:9px;
+  font-size:12px;
+  font-weight:700;
+  text-align:center;
+  transition:transform .2s,background .2s,border-color .2s;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--accent);color:#111609}
+.btn-primary:hover{background:#dbff96}
+.btn-outline{
+  border-color:#35404a;
+  background:transparent;
+  color:#e6ebef;
+}
+.btn-outline:hover{
+  background:#1b2229;
+  border-color:#64717b;
+}
+.btn-blue{background:#dcecff;color:#111820}
+.menu-toggle{
+  display:none;
+  align-items:center;
+  justify-content:center;
+  width:43px;
+  height:43px;
+  border:1px solid var(--border);
+  border-radius:9px;
+  background:var(--surface);
+  color:white;
+}
+.menu-toggle svg{width:21px;height:21px}
+.mobile-nav{display:none}
+.hero{
+  display:grid;
+  grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
+  align-items:center;
+  gap:clamp(30px,5vw,80px);
+  min-height:610px;
+  padding-block:85px 90px;
+}
 .eyebrow{
-  color:#52672c;font-size:11px;font-weight:800;
-  letter-spacing:.15em;text-transform:uppercase;
+  color:var(--accent);
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.17em;
+  text-transform:uppercase;
 }
-h1{
-  margin:12px 0 18px;
-  font:800 clamp(42px,8vw,78px)/1.04 Manrope;
-  letter-spacing:-.07em;
+.status-dot{
+  display:inline-block;
+  width:7px;
+  height:7px;
+  margin-right:9px;
+  border-radius:50%;
+  background:var(--accent);
+  box-shadow:0 0 14px #c7ff4f88;
 }
-.highlight{
-  background:var(--lime);
-  border:1px solid var(--ink);
-  padding:0 .08em;
+.hero h1{
+  margin:22px 0 25px;
+  font-family:var(--display);
+  font-size:clamp(58px,7vw,94px);
+  font-weight:800;
+  line-height:1.02;
+  letter-spacing:-.075em;
 }
-.subtitle{max-width:580px;color:var(--soft);font-size:17px}
-.modes{
-  display:flex;gap:8px;padding:5px;margin-bottom:28px;
-  width:fit-content;max-width:100%;
-  background:#eae8de;border:1.5px solid var(--ink);
-  border-radius:12px;
+.hero h1 span{color:var(--accent)}
+.hero-description{
+  max-width:490px;
+  margin:0;
+  color:#aab4bc;
+  font-size:15px;
+  line-height:1.95;
 }
-.mode{
-  border:1.5px solid transparent;border-radius:8px;
-  padding:10px 16px;background:transparent;
-  font-size:13px;font-weight:800;
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:30px;
 }
-.mode.active{background:var(--lime);border-color:var(--ink)}
-.panel{
-  position:relative;background:var(--card);
-  border:1.5px solid var(--ink);border-radius:19px;
-  padding:clamp(20px,4vw,30px);
-  box-shadow:5px 5px var(--ink);
+.hero-pills{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:29px;
 }
-.panel:before{
-  content:"YOUR TURN";position:absolute;right:20px;top:-13px;
-  background:var(--lime);border:1.5px solid var(--ink);
-  border-radius:5px;padding:3px 9px;
-  font-size:10px;font-weight:800;letter-spacing:.1em;
-  transform:rotate(2deg);
+.hero-pills span{
+  padding:7px 11px;
+  border:1px solid #29333a;
+  border-radius:6px;
+  background:#10151a;
+  color:#c8d0d5;
+  font-size:10px;
 }
-h2{font:800 26px Manrope;letter-spacing:-.04em}
-h3{margin:0 0 8px;font:800 17px Manrope}
-label{display:block;font-weight:800;margin:0 0 8px}
-input:not([type=radio]),textarea,select{
-  width:100%;padding:13px;border:1.5px solid #cfd0c3;
-  border-radius:10px;background:#fbfaf4;color:var(--ink);
+.hero-art{
+  position:relative;
+  min-width:0;
+  height:380px;
+  isolation:isolate;
 }
-textarea{min-height:110px;resize:vertical}
-.row{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:18px;margin-top:22px;
+.hero-art:before{
+  position:absolute;
+  inset:15%;
+  z-index:-1;
+  border-radius:50%;
+  background:#c7ff4f13;
+  filter:blur(55px);
+  content:"";
 }
-.hint{color:var(--soft);font-size:12px;margin:8px 0 0}
-.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.orbit{
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:90%;
+  height:62%;
+  border:1px solid #c7ff4f24;
+  border-radius:50%;
+  transform:translate(-50%,-50%) rotate(-25deg);
+}
+.orbit.two{
+  width:75%;
+  height:83%;
+  transform:translate(-50%,-50%) rotate(48deg);
+}
+.art-card{
+  position:absolute;
+  padding:23px;
+  border:1px solid #354239;
+  border-radius:13px;
+  background:linear-gradient(145deg,#1a221d,#101419);
+  box-shadow:0 28px 70px #0009;
+}
+.art-back{
+  top:24%;
+  left:1%;
+  width:57%;
+  height:190px;
+  transform:rotate(-7deg);
+  opacity:.85;
+}
+.art-front{
+  top:21%;
+  right:1%;
+  width:69%;
+  min-height:225px;
+  transform:rotate(3deg);
+}
+.art-top{
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+  align-items:center;
+}
+.art-label{
+  color:var(--accent);
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:.12em;
+}
+.art-badge{
+  padding:4px 8px;
+  border:1px solid #52633c;
+  border-radius:20px;
+  color:var(--accent);
+  font-size:9px;
+}
+.art-big{
+  margin:26px 0;
+  font-family:var(--display);
+  font-size:clamp(20px,2.4vw,30px);
+  font-weight:800;
+  line-height:1.25;
+  letter-spacing:-.05em;
+}
+.art-big span{color:var(--accent)}
+.art-divider{height:1px;background:#354139;margin:18px 0}
+.art-foot{
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+  color:#a4b19f;
+  font-size:9px;
+}
+.art-line{
+  height:7px;
+  margin-top:15px;
+  border-radius:10px;
+  background:#3c4940;
+}
 .chip{
-  padding:8px 11px;background:var(--bg);
-  border:1px solid var(--line);border-radius:8px;
-  font-size:12px;font-weight:700;
+  position:absolute;
+  z-index:3;
+  padding:10px 13px;
+  border:1px solid #3a4538;
+  border-radius:8px;
+  background:#151c17;
+  color:#e8f0e5;
+  font-size:10px;
+  font-weight:700;
+  box-shadow:0 15px 30px #0005;
 }
-.chip:hover{background:var(--lime)}
-.segment{
-  display:flex;gap:6px;padding:5px;background:#eeece3;
-  border:1px solid var(--line);border-radius:12px;
+.chip-top{top:8%;right:0}
+.chip-bottom{bottom:7%;left:3%}
+.section{
+  padding-block:72px 90px;
+  border-top:1px solid #ffffff0c;
 }
-.segment input[type=radio]{
-  position:absolute;opacity:0;width:1px;height:1px;
+.section-heading{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:25px;
 }
-.segment label{
-  flex:1;text-align:center;margin:0;padding:11px 6px;
-  background:transparent;border:none;border-radius:8px;
-  cursor:pointer;font-size:13px;font-weight:800;
+.section-heading h2{
+  margin:12px 0 0;
+  font-family:var(--display);
+  font-size:clamp(29px,3.5vw,42px);
+  line-height:1.2;
+  letter-spacing:-.055em;
 }
-.segment input:checked+label{
-  background:var(--ink);color:var(--lime);
+.section-heading p{
+  max-width:340px;
+  margin:0;
+  color:var(--muted);
+  font-size:13px;
 }
-.primary{
-  margin-top:22px;padding:13px 19px;
-  background:var(--lime);border:1.5px solid var(--ink);
-  border-radius:9px;box-shadow:3px 3px var(--ink);
+.mode-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:17px;
+  margin-top:32px;
+}
+.mode-card{
+  display:flex;
+  flex-direction:column;
+  min-width:0;
+  min-height:290px;
+  padding:29px;
+  border:1px solid var(--border);
+  border-radius:13px;
+  background:var(--surface);
+  transition:transform .2s,border-color .2s,background .2s;
+}
+.mode-card:hover{
+  transform:translateY(-4px);
+  border-color:#71884e;
+  background:#141a17;
+}
+.mode-icon{
+  display:grid;
+  place-items:center;
+  width:44px;
+  height:44px;
+  margin-bottom:25px;
+  border-radius:10px;
+  background:#c7ff4f14;
+  color:var(--accent);
+  font-size:21px;
+}
+.mode-icon.blue{
+  background:#8fc9ff15;
+  color:var(--blue);
+}
+.mode-number{
+  color:#84918a;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.13em;
+}
+.mode-card h3{
+  margin:9px 0;
+  font-family:var(--display);
+  font-size:23px;
+  letter-spacing:-.05em;
+}
+.mode-card p{
+  flex:1;
+  margin:0 0 23px;
+  color:#9ba6ae;
+  font-size:13px;
+  line-height:1.85;
+}
+.card-link{
+  align-self:flex-start;
+  color:var(--accent);
+  font-size:12px;
+  font-weight:700;
+}
+.card-link:hover{text-decoration:underline}
+.card-link.blue{color:var(--blue)}
+.about{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  gap:60px;
+}
+.about h2{
+  max-width:560px;
+  margin:14px 0;
+  font-family:var(--display);
+  font-size:clamp(32px,4vw,48px);
+  line-height:1.15;
+  letter-spacing:-.06em;
+}
+.about h2 span{color:var(--accent)}
+.about p{
+  max-width:510px;
+  color:var(--muted);
+  font-size:14px;
+  line-height:2;
+}
+.principles{
+  display:grid;
+  gap:13px;
+}
+.principle{
+  display:flex;
+  align-items:flex-start;
+  gap:16px;
+  padding:20px;
+  border:1px solid var(--border);
+  border-radius:11px;
+  background:var(--surface);
+}
+.principle-icon{
+  display:grid;
+  place-items:center;
+  flex-shrink:0;
+  width:35px;
+  height:35px;
+  border-radius:8px;
+  background:#c7ff4f14;
+  color:var(--accent);
   font-weight:800;
 }
-.primary:hover:not(:disabled){transform:translate(-1px,-1px)}
-.error{color:var(--red);font-size:13px;font-weight:700;margin-top:10px}
-.results{margin-top:38px}
-.result-card{
-  padding:19px;margin-bottom:13px;background:var(--card);
-  border:1.5px solid var(--line);border-radius:13px;
-  box-shadow:2px 2px #deded4;overflow-wrap:anywhere;
+.principle strong{
+  display:block;
+  margin-bottom:3px;
+  font-size:14px;
 }
-.result-card p{margin:8px 0}
-.result-card ul{padding-left:22px}
-.result-card li{margin:7px 0}
-.result-card a{color:#496c22}
-.result-title{font:800 29px Manrope;letter-spacing:-.04em}
-.result-tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px}
-.result-tab{
-  padding:10px 13px;border:1px solid var(--line);
-  border-radius:8px;background:var(--card);font-weight:800;
+.principle p{margin:0;font-size:12px}
+.cta{
+  padding:75px 30px;
+  border:1px solid #34422f;
+  border-radius:17px;
+  background:radial-gradient(ellipse at top,#22301a 0%,#101419 70%);
+  text-align:center;
 }
-.result-tab.active{background:var(--lime);border-color:var(--ink)}
-.toolbar{display:flex;gap:9px;flex-wrap:wrap;margin:15px 0}
-.badge{
-  display:inline-block;padding:2px 7px;
-  border:1px solid var(--line);border-radius:5px;
-  font-size:10px;font-weight:800;
+.cta h2{
+  margin:14px 0;
+  font-family:var(--display);
+  font-size:clamp(32px,4.5vw,54px);
+  line-height:1.2;
+  letter-spacing:-.06em;
 }
-.auth-box{
-  margin-top:20px;padding:22px;background:var(--card);
-  border:1.5px solid var(--ink);border-radius:15px;
+.cta p{
+  max-width:540px;
+  margin:0 auto 25px;
+  color:#aab4bc;
+  font-size:14px;
 }
-.auth-box input{margin-bottom:13px}
-.auth-box .primary{margin-top:8px}
-.text-button{
-  display:inline-block;margin-top:12px;padding:5px 0;
-  background:transparent;border:none;color:#496c22;
-  text-decoration:underline;font-size:13px;font-weight:800;
-}
-.history-item{
-  display:flex;justify-content:space-between;
-  align-items:center;gap:15px;flex-wrap:wrap;
-  padding:16px;margin-bottom:10px;background:var(--card);
-  border:1.5px solid var(--line);border-radius:12px;
-}
-.history-item p{margin:3px 0;color:var(--soft);font-size:12px}
-.history-actions{display:flex;gap:7px;flex-wrap:wrap}
-.team-box{
-  padding:20px;margin:18px 0;background:#fbfaf4;
-  border:1px solid var(--line);border-radius:13px;
-}
-.team-box input{margin-bottom:10px}
-.status{font-size:13px;color:#496c22;margin:12px 0}
 footer{
-  margin-top:50px;border-top:1px solid var(--line);
-  padding-top:18px;text-align:center;
-  color:var(--soft);font-size:12px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:20px;
+  padding:30px max(40px,calc((100vw - 1240px)/2));
+  border-top:1px solid var(--border);
+  color:var(--muted);
+  font-size:12px;
 }
-@media(max-width:600px){
-  main{padding:18px 15px 40px}
-  .row{grid-template-columns:1fr}
-  .top-actions{width:100%;margin-left:0}
-  .modes{width:100%}
-  .mode{flex:1;padding:10px}
-  .subtitle{font-size:15px}
-  .segment label{font-size:12px}
+footer strong{color:var(--text);letter-spacing:.1em}
+footer strong span{color:var(--accent)}
+footer a:hover{color:var(--accent)}
+
+/* Tablet */
+@media(max-width:1050px){
+  .hero{gap:25px}
+  .hero h1{font-size:clamp(51px,6.5vw,75px)}
+  .art-front{width:75%}
+  .art-back{width:65%}
+  .mode-card{padding:22px}
+  .desktop-nav{gap:16px}
 }
-@media print{
-  .topbar,.hero,.modes,.panel,.toolbar,footer,#history-panel{
-    display:none!important;
+@media(max-width:800px){
+  .container{width:min(100% - 48px,680px)}
+  .topbar{padding-inline:24px;height:68px}
+  .desktop-nav{display:none}
+  .menu-toggle{display:flex}
+  .mobile-nav{
+    position:fixed;
+    top:68px;
+    left:0;
+    right:0;
+    z-index:99;
+    display:none;
+    flex-direction:column;
+    gap:6px;
+    padding:16px 24px 22px;
+    border-bottom:1px solid var(--border);
+    background:#101419;
+    box-shadow:0 20px 35px #0009;
   }
-  body{background:white}
-  .results{display:block!important;margin:0}
-  .result-card{box-shadow:none;break-inside:avoid}
+  .mobile-nav.open{display:flex}
+  .mobile-nav a{
+    display:block;
+    padding:12px;
+    border-radius:8px;
+    color:#e6ebef;
+    font-size:14px;
+  }
+  .mobile-nav a:hover{background:#1b2229}
+  .mobile-nav .btn-primary{color:#111609}
+  .hero{
+    grid-template-columns:1fr;
+    gap:25px;
+    min-height:0;
+    padding-block:64px 50px;
+  }
+  .hero h1{font-size:clamp(54px,9vw,77px)}
+  .hero-art{height:350px;max-width:510px;width:100%;margin-inline:auto}
+  .art-big{font-size:27px}
+  .mode-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .mode-card:last-child{grid-column:1/-1}
+  .mode-card{min-height:260px}
+  .section{padding-block:60px}
+  .about{grid-template-columns:1fr;gap:30px}
+  footer{padding-inline:24px}
+}
+/* Phone */
+@media(max-width:560px){
+  .container{width:calc(100% - 36px)}
+  .topbar{padding-inline:18px}
+  .brand{font-size:13px}
+  .brand-mark{width:34px;height:34px}
+  .hero{padding-block:48px 30px}
+  .eyebrow{font-size:9px}
+  .hero h1{
+    margin:18px 0;
+    font-size:clamp(44px,12vw,65px);
+    line-height:1.06;
+    letter-spacing:-.065em;
+  }
+  .hero-description{font-size:14px;line-height:1.85}
+  .hero-actions{display:grid;grid-template-columns:1fr;gap:10px}
+  .hero-actions .btn{width:100%;min-height:49px}
+  .hero-pills{gap:7px;margin-top:22px}
+  .hero-pills span{font-size:9px}
+  .hero-art{height:280px;margin-top:12px}
+  .art-card{padding:14px}
+  .art-back{top:24%;left:0;width:61%;height:145px}
+  .art-front{top:19%;right:0;width:73%;min-height:177px}
+  .art-big{font-size:clamp(17px,5.2vw,23px);margin:19px 0}
+  .art-divider{margin:12px 0}
+  .art-label{font-size:7px}
+  .art-badge{font-size:7px}
+  .art-foot{font-size:7px}
+  .chip{padding:7px 9px;font-size:8px}
+  .chip-top{top:3%}
+  .chip-bottom{bottom:1%}
+  .section{padding-block:48px}
+  .section-heading{align-items:flex-start;flex-direction:column;gap:12px}
+  .section-heading h2{font-size:30px}
+  .mode-grid{grid-template-columns:1fr;gap:12px;margin-top:24px}
+  .mode-card,.mode-card:last-child{
+    grid-column:auto;
+    min-height:0;
+    padding:23px;
+  }
+  .mode-icon{margin-bottom:17px}
+  .mode-card h3{font-size:22px}
+  .mode-card p{margin-bottom:17px}
+  .about h2{font-size:34px}
+  .principle{padding:16px}
+  .cta{padding:43px 19px}
+  .cta h2{font-size:33px}
+  footer{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:10px;
+    padding:27px 18px;
+  }
+}
+@media(max-width:350px){
+  .hero h1{font-size:42px}
+  .hero-art{height:245px}
+  .art-front{width:78%}
+  .art-big{font-size:17px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{
+    scroll-behavior:auto!important;
+    transition:none!important;
+    animation:none!important;
+  }
 }
 </style>
 </head>
+
 <body>
-<main>
 
-<div class="topbar">
-  <div class="logo">D.</div>
-  <div class="brand">DEBATRIX</div>
-  <div class="top-actions">
-    <button class="smallbtn" id="home-btn">Home</button>
-    <button class="smallbtn" id="history-btn">History</button>
-    <button class="smallbtn" id="teams-btn">Teams</button>
-    <button class="smallbtn" id="auth-btn">Log in / Sign up</button>
-    <button class="smallbtn" id="logout-btn" hidden>Log out</button>
-  </div>
-</div>
+<header class="topbar">
+  <a class="brand" href="/" aria-label="DEBATRIX home">
+    <span class="brand-mark">D.</span>
+    DEBATRIX
+  </a>
 
-<header class="hero">
-  <p class="eyebrow">Think fast. Make your case.</p>
-  <h1>Walk in with <span class="highlight">a case.</span></h1>
-  <p class="subtitle">
-    Sharper arguments. Smarter preparation.
-    From the debate floor to the Model UN committee room.
-    Prepare with AI, then make the ideas your own.
-  </p>
-  <p class="hint" id="account-status">Guest mode — no login required.</p>
+  <nav class="desktop-nav" aria-label="Main navigation">
+    <a href="#workspaces">Workspaces</a>
+    <a href="#about">Why DEBATRIX</a>
+    <a href="/app.html#history">History</a>
+    <a href="/app.html#teams">Teams</a>
+    <a href="/app.html#account">Account</a>
+    <a class="btn btn-primary" href="/app.html#debate">Start preparing ↗</a>
+  </nav>
+
+  <button class="menu-toggle" id="menu-toggle"
+    type="button" aria-label="Open menu"
+    aria-controls="mobile-nav" aria-expanded="false">
+    <svg viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2"
+      stroke-linecap="round">
+      <path d="M4 7h16M4 12h16M4 17h16"/>
+    </svg>
+  </button>
 </header>
 
-<div class="modes" id="modes">
-  <button class="mode active" id="mode-debate">⚡ Debate Prep</button>
-  <button class="mode" id="mode-mun">🌐 Model UN</button>
-</div>
+<nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+  <a href="#workspaces">Workspaces</a>
+  <a href="#about">Why DEBATRIX</a>
+  <a href="/app.html#debate">Debate Prep</a>
+  <a href="/app.html#mun">Model UN</a>
+  <a href="/app.html#history">History</a>
+  <a href="/app.html#teams">Teams</a>
+  <a href="/app.html#account">Account</a>
+  <a class="btn btn-primary" href="/app.html#debate">Start preparing ↗</a>
+</nav>
 
-<section class="panel" id="debate-panel">
-  <label for="motion">What are we arguing about?</label>
-  <textarea id="motion" maxlength="300"
-    placeholder="Enter your debate motion..."></textarea>
-  <p class="hint">Use the exact motion if you have one.</p>
-  <div class="chips" id="chips"></div>
+<main>
 
-  <div class="row">
-    <div>
-      <label>Which side are you on?</label>
-      <div class="segment">
-        <input type="radio" name="side" id="for" value="For" checked>
-        <label for="for">For</label>
-        <input type="radio" name="side" id="against" value="Against">
-        <label for="against">Against</label>
-        <input type="radio" name="side" id="neutral" value="Neutral">
-        <label for="neutral">Neutral</label>
-      </div>
-      <p class="hint">Neutral explores arguments on both sides.</p>
+<section class="hero container" id="home">
+  <div class="hero-content">
+    <div class="eyebrow">
+      <span class="status-dot"></span>
+      THINK CLEARLY. SPEAK WITH PURPOSE.
     </div>
-    <div>
-      <label for="level">Format</label>
-      <select id="level">
-        <option value="School debate">School Debate</option>
-        <option value="Parliamentary">Parliamentary</option>
-        <option value="Competitive debate">Competitive Debate</option>
-      </select>
-    </div>
-  </div>
 
-  <button class="primary" id="debate-go">Make my case ↗</button>
-  <p class="error" id="debate-error" role="alert"></p>
-  <p class="hint">Verify evidence and sources before using them in a debate.</p>
-</section>
+    <h1>
+      Walk in<br>
+      with <span>a case.</span>
+    </h1>
 
-<section class="panel" id="mun-panel" hidden>
-  <p class="eyebrow">Your delegation. Your strategy.</p>
-  <h2>Know your country. Shape the room.</h2>
-  <p class="hint">Represent your assigned country and prepare for diplomacy.</p>
-
-  <div style="margin-top:22px">
-    <label for="mun-country">Your assigned country</label>
-    <input id="mun-country" maxlength="100" placeholder="e.g. India">
-  </div>
-
-  <div class="row">
-    <div>
-      <label for="mun-committee">Committee</label>
-      <input id="mun-committee" maxlength="150" placeholder="e.g. UNHRC">
-    </div>
-    <div>
-      <label for="mun-agenda">Agenda / topic</label>
-      <input id="mun-agenda" maxlength="300" placeholder="e.g. Protecting refugees">
-    </div>
-  </div>
-
-  <div style="margin-top:22px">
-    <label for="mun-others">Other countries / delegations</label>
-    <textarea id="mun-others" maxlength="500"
-      placeholder="e.g. China, USA, Brazil"></textarea>
-    <p class="hint">
-      Separate countries with commas. Not every country must be an opponent.
+    <p class="hero-description">
+      Great arguments begin with understanding.
+      DEBATRIX helps you explore ideas, build your
+      reasoning, and prepare for debate and Model UN
+      with confidence. AI guides your preparation.
+      You make the argument your own.
     </p>
+
+    <div class="hero-actions">
+      <a href="/app.html#debate" class="btn btn-primary">
+        Start preparing <span>↗</span>
+      </a>
+      <a href="/app.html#mun" class="btn btn-outline">
+        Explore Model UN <span>↗</span>
+      </a>
+    </div>
+
+    <div class="hero-pills">
+      <span>Debate preparation</span>
+      <span>Model UN strategy</span>
+      <span>Team collaboration</span>
+    </div>
   </div>
 
-  <button class="primary" id="mun-go">Build my MUN prep ↗</button>
-  <p class="error" id="mun-error" role="alert"></p>
-  <p class="hint">Verify country policies with official sources.</p>
-</section>
+  <div class="hero-art" aria-label="Illustration of a debate argument">
+    <div class="orbit"></div>
+    <div class="orbit two"></div>
 
-<section class="results" id="results" hidden>
-  <h2 class="result-title" id="result-heading">Your preparation</h2>
-  <div class="toolbar">
-    <button class="smallbtn" id="save-btn">Save preparation</button>
-    <button class="smallbtn" id="share-btn">Share with Team</button>
-    <button class="smallbtn" id="print-btn">Print</button>
-    <button class="smallbtn" id="download-docx-btn">
-      Download Quick Reference (.docx) ↓
-    </button>
-  </div>
-  <p class="hint" id="save-status" role="status"></p>
-  <div id="result-body"></div>
-</section>
+    <div class="art-card art-back">
+      <div class="art-label">YOUR RESEARCH / 001</div>
+      <div class="art-line" style="width:75%"></div>
+      <div class="art-line" style="width:90%"></div>
+      <div class="art-line" style="width:55%"></div>
+      <div class="art-divider"></div>
+      <div class="art-label">BUILD YOUR REASONING</div>
+    </div>
 
-<section class="panel" id="teams-panel" hidden>
-  <p class="eyebrow">DEBATRIX Collaboration</p>
-  <h2>Your Teams</h2>
-  <p class="hint">
-    Create a team, invite members, and share debate and Model UN preparations.
-  </p>
-
-  <button class="smallbtn" id="teams-back" style="margin-top:18px">
-    ← Back to Home
-  </button>
-
-  <p class="status" id="teams-message" role="status"></p>
-
-  <div id="teams-main">
-    <div class="row">
-      <div class="team-box">
-        <h3>Create a team</h3>
-        <label for="team-name">Team name</label>
-        <input id="team-name" maxlength="80"
-          placeholder="School Debate Club">
-        <button class="primary" id="team-create">Create Team</button>
+    <div class="art-card art-front">
+      <div class="art-top">
+        <span class="art-label">YOUR CASE / 001</span>
+        <span class="art-badge">IN PROGRESS</span>
       </div>
-
-      <div class="team-box">
-        <h3>Join a team</h3>
-        <label for="team-code">Invitation code</label>
-        <input id="team-code" placeholder="Enter invitation code">
-        <button class="primary" id="team-join">Join Team</button>
+      <div class="art-big">
+        Make every<br>
+        point <span>count.</span>
+      </div>
+      <div class="art-divider"></div>
+      <div class="art-foot">
+        <span>CLAIM</span>
+        <span>EVIDENCE</span>
+        <span>REASONING</span>
       </div>
     </div>
 
-    <h3 style="margin-top:25px">Teams you belong to</h3>
-    <button class="smallbtn" id="team-refresh">Refresh Teams</button>
-    <div id="teams-list" style="margin-top:18px"></div>
+    <div class="chip chip-top">✦ Think critically</div>
+    <div class="chip chip-bottom">↗ Build stronger arguments</div>
   </div>
+</section>
 
-  <div id="team-detail" hidden>
-    <button class="smallbtn" id="team-list-back">← All Teams</button>
-    <h2 id="team-detail-title">Team</h2>
-    <p id="team-invite-display" class="hint"></p>
-    <button class="smallbtn" id="team-copy-code">Copy Invitation Code</button>
+<section class="section" id="workspaces">
+  <div class="container">
 
-    <div class="toolbar">
-      <button class="smallbtn" id="team-share-current">
-        Share Current Preparation
-      </button>
-      <button class="smallbtn" id="team-refresh-preps">
-        Refresh Preparations
-      </button>
+    <div class="section-heading">
+      <div>
+        <div class="eyebrow">CHOOSE YOUR WORKSPACE</div>
+        <h2>What are you preparing for?</h2>
+      </div>
+      <p>
+        Different competitions. Different challenges.
+        One place to prepare with purpose.
+      </p>
     </div>
 
-    <p class="status" id="team-detail-message"></p>
+    <div class="mode-grid">
 
-    <h3>Shared preparations</h3>
-    <div id="team-preps"></div>
+      <article class="mode-card">
+        <div class="mode-icon">⚡</div>
+        <div class="mode-number">01 / ARGUMENTATION</div>
+        <h3>Debate Prep</h3>
+        <p>
+          Break down motions, understand both sides,
+          develop strong arguments, and prepare
+          responses to challenging questions.
+        </p>
+        <a class="card-link" href="/app.html#debate">
+          Open Debate Studio <span>↗</span>
+        </a>
+      </article>
 
-    <div class="team-box" id="team-notes-box" hidden>
-      <h3>Collaborative notes</h3>
-      <p class="hint" id="team-selected-prep"></p>
-      <label for="team-notes">Notes</label>
-      <textarea id="team-notes"
-        placeholder="Write arguments, research notes and discussion points..."></textarea>
-      <button class="primary" id="team-save-notes">Save Notes</button>
-      <p class="status" id="team-notes-message"></p>
+      <article class="mode-card">
+        <div class="mode-icon blue">◎</div>
+        <div class="mode-number">02 / DIPLOMACY</div>
+        <h3>Model UN</h3>
+        <p>
+          Understand your country's position,
+          research your agenda, develop policy
+          arguments, and prepare to negotiate.
+        </p>
+        <a class="card-link blue" href="/app.html#mun">
+          Open MUN Workspace <span>↗</span>
+        </a>
+      </article>
+
+      <article class="mode-card">
+        <div class="mode-icon">↗</div>
+        <div class="mode-number">03 / COLLABORATION</div>
+        <h3>Team Workspace</h3>
+        <p>
+          Bring your team together, organise research,
+          coordinate preparation, and build
+          arguments collaboratively.
+        </p>
+        <a class="card-link" href="/app.html#teams">
+          Open Team Workspace <span>↗</span>
+        </a>
+      </article>
+
     </div>
   </div>
 </section>
 
-<section class="panel" id="auth-panel" hidden>
-  <p class="eyebrow">Your work. Your account.</p>
-  <h2>Welcome to DEBATRIX.</h2>
-  <p class="hint">
-    Sign in to sync preparation history and collaborate with teams.
-    Or continue as a guest.
-  </p>
+<section class="section" id="about">
+  <div class="container about">
 
-  <button class="smallbtn" id="close-auth" style="margin-top:18px">
-    ← Back to Home
-  </button>
-
-  <div class="auth-box" id="login-signup-box">
-    <label for="auth-email">Email</label>
-    <input type="email" id="auth-email" autocomplete="email"
-      placeholder="you@example.com">
-
-    <label for="auth-password">Password</label>
-    <input type="password" id="auth-password"
-      autocomplete="current-password" minlength="8"
-      placeholder="At least 8 characters">
-
-    <div class="toolbar">
-      <button class="primary" id="login-btn">Log in</button>
-      <button class="primary" id="signup-btn">Sign up</button>
+    <div>
+      <div class="eyebrow">A BETTER WAY TO PREPARE</div>
+      <h2>
+        Understand first.<br>
+        <span>Argue better.</span>
+      </h2>
+      <p>
+        AI can produce an argument in seconds.
+        But reading an argument isn't the same as
+        understanding it.
+      </p>
+      <p>
+        DEBATRIX is built around a different idea:
+        use AI to discover perspectives, organise
+        your thinking, and prepare independently.
+        The goal isn't to memorise a perfect answer.
+        It's to know what you're talking about.
+      </p>
     </div>
 
-    <button class="text-button" id="forgot-password-btn">
-      Forgot password?
-    </button>
-    <p class="hint">Use an email address you can access.</p>
-    <p id="auth-message" role="status"></p>
-  </div>
+    <div class="principles">
 
-  <div class="auth-box" id="reset-password-box" hidden>
-    <p class="eyebrow">ACCOUNT RECOVERY</p>
-    <h3>Choose a new password</h3>
+      <div class="principle">
+        <div class="principle-icon">01</div>
+        <div>
+          <strong>Explore the topic</strong>
+          <p>
+            Understand the background, key questions,
+            and perspectives before forming your case.
+          </p>
+        </div>
+      </div>
 
-    <label for="new-password">New password</label>
-    <input type="password" id="new-password" minlength="8"
-      autocomplete="new-password">
+      <div class="principle">
+        <div class="principle-icon">02</div>
+        <div>
+          <strong>Develop your reasoning</strong>
+          <p>
+            Connect claims, evidence, and logic
+            into arguments you can explain.
+          </p>
+        </div>
+      </div>
 
-    <label for="confirm-new-password">Confirm new password</label>
-    <input type="password" id="confirm-new-password" minlength="8"
-      autocomplete="new-password">
+      <div class="principle">
+        <div class="principle-icon">03</div>
+        <div>
+          <strong>Make the ideas your own</strong>
+          <p>
+            Use your preparation as a starting point,
+            not a script to copy.
+          </p>
+        </div>
+      </div>
 
-    <button class="primary" id="update-password-btn">
-      Set new password
-    </button>
-    <p id="reset-password-message" role="status"></p>
+    </div>
   </div>
 </section>
 
-<section class="results" id="history-panel" hidden>
-  <h2 class="result-title">Your past preparations</h2>
-  <p class="hint" id="history-description"></p>
-
-  <div class="toolbar">
-    <button class="smallbtn" id="import-btn" hidden>
-      Import guest history to account
-    </button>
-    <button class="smallbtn" id="close-history">← Back to Home</button>
+<section class="section">
+  <div class="container">
+    <div class="cta">
+      <div class="eyebrow">YOUR NEXT ARGUMENT STARTS HERE</div>
+      <h2>Ready to make your case?</h2>
+      <p>
+        Whether you're preparing for your first
+        school debate or your next Model UN,
+        start with understanding.
+      </p>
+      <a href="/app.html#debate" class="btn btn-primary">
+        Enter DEBATRIX <span>↗</span>
+      </a>
+    </div>
   </div>
-
-  <p id="history-message" role="status"></p>
-  <div id="history-list"></div>
 </section>
-
-<footer>
-  DEBATRIX · Built for better arguments · Created by Siddharth.N
-</footer>
 
 </main>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.js"></script>
+<footer>
+  <strong>DEBATRIX<span>.</span></strong>
+  <span>Built for better arguments.</span>
+  <span>Created by Siddharth.N</span>
+  <a href="/app.html">Open workspace ↗</a>
+</footer>
 
 <script>
-"use strict";
+(function(){
+  "use strict";
 
-/* CONFIGURATION */
+  const toggle = document.getElementById("menu-toggle");
+  const nav = document.getElementById("mobile-nav");
 
-const SUPABASE_URL =
-  "https://vtsyhccmlhdjhvakjhsl.supabase.co";
-
-const SUPABASE_KEY =
-  "sb_publishable_LQOBXRrnUTpdwHvRb_s3pw_Oa_aqx8z";
-
-const $ = id => document.getElementById(id);
-
-const db = window.supabase
-  ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
-      auth: {
-        flowType: "pkce",
-        detectSessionInUrl: false,
-        persistSession: true,
-        autoRefreshToken: true
-      }
-    })
-  : null;
-
-let currentUser = null;
-let currentPreparation = null;
-let currentMode = "debate";
-let currentTab = "case";
-let activeTeam = null;
-let activeTeamPreparation = null;
-let teamsCache = [];
-
-const LOCAL_KEY = "debatrix_guest_history_v1";
-
-/* UTILITIES */
-
-function esc(value) {
-  return String(value ?? "").replace(
-    /[&<>"']/g,
-    c => ({
-      "&":"&amp;",
-      "<":"&lt;",
-      ">":"&gt;",
-      '"':"&quot;",
-      "'":"&#39;"
-    })[c]
-  );
-}
-
-function message(id, value) {
-  const element = $(id);
-  if (element) element.textContent = value || "";
-}
-
-function friendlyError(error) {
-  return error?.message || "Something went wrong.";
-}
-
-function guestHistory() {
-  try {
-    const data = JSON.parse(localStorage.getItem(LOCAL_KEY) || "[]");
-    return Array.isArray(data) ? data : [];
-  } catch {
-    return [];
-  }
-}
-
-function writeGuestHistory(items) {
-  try {
-    localStorage.setItem(
-      LOCAL_KEY,
-      JSON.stringify(items.slice(0, 100))
-    );
-  } catch (error) {
-    console.warn("Local history could not be saved.", error);
-  }
-}
-
-function newId() {
-  if (window.crypto?.randomUUID) {
-    return crypto.randomUUID();
+  function closeMenu(){
+    nav.classList.remove("open");
+    toggle.setAttribute("aria-expanded","false");
+    toggle.setAttribute("aria-label","Open menu");
   }
 
-  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
-    /[xy]/g,
-    c => {
-      const r = Math.random() * 16 | 0;
-      return (c === "x" ? r : (r & 3 | 8)).toString(16);
-    }
-  );
-}
-
-/* NAVIGATION */
-
-function hidePanels() {
-  [
-    "debate-panel",
-    "mun-panel",
-    "results",
-    "teams-panel",
-    "auth-panel",
-    "history-panel"
-  ].forEach(id => {
-    $(id).hidden = true;
-  });
-}
-
-function showWorkspace() {
-  hidePanels();
-
-  $("modes").hidden = false;
-  $(currentMode === "mun" ? "mun-panel" : "debate-panel").hidden = false;
-  $("results").hidden = !currentPreparation;
-}
-
-function showPage(id) {
-  hidePanels();
-  $("modes").hidden = true;
-  $(id).hidden = false;
-  window.scrollTo({top:0,behavior:"smooth"});
-}
-
-function setMode(mode) {
-  currentMode = mode;
-  currentPreparation = null;
-
-  $("mode-debate").classList.toggle("active", mode === "debate");
-  $("mode-mun").classList.toggle("active", mode === "mun");
-
-  $("mode-debate").setAttribute(
-    "aria-pressed",
-    String(mode === "debate")
-  );
-
-  $("mode-mun").setAttribute(
-    "aria-pressed",
-    String(mode === "mun")
-  );
-
-  showWorkspace();
-}
-
-$("home-btn").onclick = () => {
-  showWorkspace();
-  window.scrollTo({top:0,behavior:"smooth"});
-};
-
-$("mode-debate").onclick = () => setMode("debate");
-$("mode-mun").onclick = () => setMode("mun");
-
-$("close-auth").onclick = showWorkspace;
-$("close-history").onclick = showWorkspace;
-$("teams-back").onclick = showWorkspace;
-
-/* EXAMPLE MOTIONS */
-
-const examples = [
-  "Social media does more harm than good to teenagers",
-  "Homework should be banned in primary schools",
-  "Nuclear power is essential to fight climate change",
-  "School uniforms should be compulsory"
-];
-
-examples.forEach(example => {
-  const button = document.createElement("button");
-
-  button.className = "chip";
-  button.type = "button";
-  button.textContent = example;
-
-  button.onclick = () => {
-    $("motion").value =
-      "This house believes that " +
-      example.charAt(0).toLowerCase() +
-      example.slice(1);
-  };
-
-  $("chips").appendChild(button);
-});
-
-/* RESULT HELPERS */
-
-function card(title, content) {
-  return `
-    <article class="result-card">
-      <h3>${esc(title)}</h3>
-      ${content}
-    </article>
-  `;
-}
-
-function list(items) {
-  if (!Array.isArray(items) || !items.length) {
-    return '<p class="hint">No information available.</p>';
-  }
-
-  return "<ul>" +
-    items.map(item => `<li>${esc(item)}</li>`).join("") +
-    "</ul>";
-}
-
-function sourceLink(source, year) {
-  const query = encodeURIComponent(
-    `${source || ""} ${year || ""}`
-  );
-
-  return `
-    <a href="https://scholar.google.com/scholar?q=${query}"
-       target="_blank" rel="noopener noreferrer">
-      Search for source ↗
-    </a>
-  `;
-}
-
-/* DEBATE RENDERING */
-
-function renderDebate(data) {
-  const d = data || {};
-
-  const points = (d.points || []).map(point => card(
-    point.title || "Argument",
-    `
-      <span class="badge">${esc(point.strength)}</span>
-      <p><b>Claim:</b> ${esc(point.claim)}</p>
-      <p><b>Evidence:</b> ${esc(point.evidence)}</p>
-      <p class="hint">
-        Source: ${esc(point.source)} ${esc(point.year)}
-      </p>
-      <p>${sourceLink(point.source, point.year)}</p>
-      <p class="hint"><b>Verify:</b> ${esc(point.check)}</p>
-    `
-  )).join("");
-
-  const attacks = (d.attacks || []).map(attack => card(
-    "They say / You reply",
-    `
-      <p><b>They say:</b> ${esc(attack.they_say)}</p>
-      <p><b>You reply:</b> ${esc(attack.you_say)}</p>
-      <p class="hint">Research lead: ${esc(attack.source)}</p>
-    `
-  )).join("");
-
-  const quick = d.doodle || {};
-
-  const quickReference = card(
-    quick.headline || "Quick Reference",
-    `
-      <p><b>Opening:</b> ${esc(quick.hook)}</p>
-      <h3>Three pillars</h3>
-      ${list(quick.pillars)}
-      <h3>Evidence to verify</h3>
-      ${list(quick.numbers)}
-      <h3>Comebacks</h3>
-      ${list(quick.comebacks)}
-      <h3>Memorable lines</h3>
-      ${list(quick.zingers)}
-      <p><b>Closer:</b> ${esc(quick.closer)}</p>
-    `
-  );
-
-  const neutral =
-    currentPreparation?.side === "Neutral" ||
-    d._debatrixSide === "Neutral";
-
-  $("result-body").innerHTML = `
-    <div class="result-tabs">
-      <button class="result-tab" data-tab="case">
-        ${neutral ? "Both sides" : "Your case"}
-      </button>
-      <button class="result-tab" data-tab="attacks">
-        Attacks & defences
-      </button>
-      <button class="result-tab" data-tab="quick">
-        Quick Reference
-      </button>
-    </div>
-
-    <div id="debate-case">
-      ${card("Understanding the motion", `<p>${esc(d.framing)}</p>`)}
-      ${points}
-    </div>
-
-    <div id="debate-attacks" hidden>
-      ${attacks}
-    </div>
-
-    <div id="debate-quick" hidden>
-      ${quickReference}
-    </div>
-
-    <p class="hint">
-      Source searches are not verified citations.
-      Check original documents before quoting evidence.
-    </p>
-  `;
-
-  document.querySelectorAll("[data-tab]").forEach(button => {
-    button.onclick = () => showDebateTab(button.dataset.tab);
-  });
-
-  showDebateTab(currentTab);
-}
-
-function showDebateTab(tab) {
-  currentTab = tab;
-
-  ["case","attacks","quick"].forEach(name => {
-    $("debate-" + name).hidden = name !== tab;
-  });
-
-  document.querySelectorAll("[data-tab]").forEach(button => {
-    button.classList.toggle(
-      "active",
-      button.dataset.tab === tab
+  toggle.addEventListener("click",function(){
+    const isOpen = nav.classList.toggle("open");
+    toggle.setAttribute("aria-expanded",String(isOpen));
+    toggle.setAttribute(
+      "aria-label",
+      isOpen ? "Close menu" : "Open menu"
     );
   });
-}
 
-/* MODEL UN RENDERING */
-
-function renderMun(data) {
-  const d = data || {};
-
-  const dynamics = (d.countryDynamics || []).map(item => card(
-    item.country || "Delegation",
-    `
-      <p><b>Potential relationship:</b>
-        ${esc(item.relationship)}
-      </p>
-      <p>${esc(item.reason)}</p>
-      <p class="hint">
-        Confidence: ${esc(item.confidence)}
-      </p>
-    `
-  )).join("");
-
-  $("result-body").innerHTML = `
-    ${card("Agenda overview", `<p>${esc(d.overview)}</p>`)}
-
-    ${card("Opening speech", `
-      <p style="white-space:pre-wrap">
-        ${esc(d.openingSpeech)}
-      </p>
-      <button class="smallbtn" id="copy-speech">
-        Copy speech
-      </button>
-    `)}
-
-    ${card("Country position", list(d.countryPosition))}
-    ${card("Policy priorities", list(d.policyPriorities))}
-
-    ${card(
-      "Other delegations",
-      dynamics || "<p>No other delegations were analysed.</p>"
-    )}
-
-    ${card("Negotiation strategy", list(d.negotiationStrategy))}
-    ${card("Points of information", list(d.pois))}
-    ${card("Resolution ideas", list(d.resolutionIdeas))}
-    ${card("Research checklist", list(d.researchChecklist))}
-
-    <p class="hint">
-      Verify diplomatic positions using official government
-      and United Nations sources.
-    </p>
-  `;
-
-  $("copy-speech").onclick = async () => {
-    try {
-      await navigator.clipboard.writeText(d.openingSpeech || "");
-      $("copy-speech").textContent = "Copied!";
-    } catch {
-      window.prompt(
-        "Copy your speech:",
-        d.openingSpeech || ""
-      );
-    }
-  };
-}
-
-/* DISPLAY PREPARATION */
-
-function displayPreparation(prep) {
-  currentPreparation = prep;
-  currentMode = prep.mode === "mun" ? "mun" : "debate";
-  currentTab = "case";
-
-  $("result-heading").textContent = prep.title || "Your preparation";
-  message("save-status", "");
-
-  $("mode-debate").classList.toggle(
-    "active",
-    currentMode === "debate"
-  );
-
-  $("mode-mun").classList.toggle(
-    "active",
-    currentMode === "mun"
-  );
-
-  $("mode-debate").setAttribute(
-    "aria-pressed",
-    String(currentMode === "debate")
-  );
-
-  $("mode-mun").setAttribute(
-    "aria-pressed",
-    String(currentMode === "mun")
-  );
-
-  if (currentMode === "mun") {
-    renderMun(prep.content);
-  } else {
-    renderDebate(prep.content);
-  }
-
-  showWorkspace();
-  $("results").scrollIntoView({behavior:"smooth"});
-}
-
-/* AI GENERATION */
-
-async function generate(url, payload, buttonId, errorId, mode, title) {
-  const button = $(buttonId);
-  const originalText = button.textContent;
-
-  button.disabled = true;
-  button.textContent = "Building your preparation...";
-  message(errorId, "");
-
-  try {
-    const response = await fetch(url, {
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify(payload)
-    });
-
-    let content;
-
-    try {
-      content = await response.json();
-    } catch {
-      throw new Error(
-        "The AI server returned an invalid response. Check your API deployment."
-      );
-    }
-
-    if (response.status === 429) {
-      throw new Error(
-        "Request limit reached. Please try again later."
-      );
-    }
-
-    if (!response.ok) {
-      throw new Error(
-        content.error ||
-        content.message ||
-        "Generation failed. Check your AI backend."
-      );
-    }
-
-    const result = content.preparation || content.result || content;
-
-    if (mode === "debate") {
-      result._debatrixSide = payload.side;
-    }
-
-    displayPreparation({
-      id:newId(),
-      mode,
-      title,
-      content:result,
-      ...(mode === "debate" ? {side:payload.side} : {}),
-      created_at:new Date().toISOString()
-    });
-
-    await savePreparation(true);
-
-  } catch (error) {
-    message(errorId, friendlyError(error));
-  } finally {
-    button.disabled = false;
-    button.textContent = originalText;
-  }
-}
-
-$("debate-go").onclick = () => {
-  const motion = $("motion").value.trim();
-
-  if (!motion) {
-    message("debate-error", "Please enter a debate motion.");
-    return;
-  }
-
-  const side =
-    document.querySelector('input[name="side"]:checked').value;
-
-  generate(
-    "/api/build",
-    {
-      motion,
-      side,
-      level:$("level").value
-    },
-    "debate-go",
-    "debate-error",
-    "debate",
-    motion
-  );
-};
-
-$("mun-go").onclick = () => {
-  const country = $("mun-country").value.trim();
-  const committee = $("mun-committee").value.trim();
-  const agenda = $("mun-agenda").value.trim();
-  const otherCountries = $("mun-others").value.trim();
-
-  if (!country || !committee || !agenda) {
-    message(
-      "mun-error",
-      "Enter your country, committee and agenda."
-    );
-    return;
-  }
-
-  generate(
-    "/api/mun",
-    {
-      country,
-      committee,
-      agenda,
-      otherCountries,
-      delegations:otherCountries
-    },
-    "mun-go",
-    "mun-error",
-    "mun",
-    `${country} — ${agenda}`
-  );
-};
-
-/* SAVE PREPARATIONS */
-
-async function savePreparation(silent = false) {
-  if (!currentPreparation) return;
-
-  const prep = currentPreparation;
-
-  const local = guestHistory();
-  const index = local.findIndex(item => item.id === prep.id);
-
-  if (index >= 0) {
-    local[index] = prep;
-  } else {
-    local.unshift(prep);
-  }
-
-  writeGuestHistory(local);
-
-  if (!currentUser || !db) {
-    if (!silent) {
-      message(
-        "save-status",
-        "Saved on this device. Log in to sync across devices."
-      );
-    }
-    return;
-  }
-
-  try {
-    const {error} = await db.from("preparations").upsert({
-      id:prep.id,
-      user_id:currentUser.id,
-      mode:prep.mode,
-      title:prep.title,
-      content:prep.content,
-      created_at:prep.created_at
-    }, {
-      onConflict:"id"
-    });
-
-    if (error) throw error;
-
-    if (!silent) {
-      message("save-status", "Saved to your account.");
-    }
-  } catch (error) {
-    if (!silent) {
-      message(
-        "save-status",
-        "Saved locally. Cloud save failed: " + friendlyError(error)
-      );
-    }
-  }
-}
-
-$("save-btn").onclick = () => savePreparation(false);
-
-$("print-btn").onclick = () => {
-  if (!currentPreparation) {
-    alert("Generate a preparation first.");
-    return;
-  }
-
-  window.print();
-};
-
-/* WORD EXPORT */
-
-function stringifyValue(value) {
-  if (Array.isArray(value)) {
-    return value.map(stringifyValue).join("\n");
-  }
-
-  if (value && typeof value === "object") {
-    return Object.entries(value)
-      .map(([key,val]) => `${key}: ${stringifyValue(val)}`)
-      .join("\n");
-  }
-
-  return String(value ?? "");
-}
-
-$("download-docx-btn").onclick = async () => {
-  const prep = currentPreparation;
-
-  if (!prep) {
-    alert("Generate a preparation first.");
-    return;
-  }
-
-  if (!window.docx) {
-    alert("Word export library could not load.");
-    return;
-  }
-
-  const button = $("download-docx-btn");
-  button.disabled = true;
-  button.textContent = "Creating Word document...";
-
-  try {
-    const D = window.docx;
-    const children = [];
-
-    function add(text, bold = false, size = 21) {
-      children.push(new D.Paragraph({
-        children:[
-          new D.TextRun({
-            text:String(text ?? ""),
-            bold,
-            size,
-            color:bold ? "304F17" : "242424"
-          })
-        ],
-        spacing:{after:140}
-      }));
-    }
-
-    function heading(text) {
-      children.push(new D.Paragraph({
-        text,
-        heading:D.HeadingLevel.HEADING_1,
-        spacing:{before:260,after:130}
-      }));
-    }
-
-    function section(name, value) {
-      heading(name);
-
-      if (Array.isArray(value)) {
-        value.forEach(item => {
-          add(stringifyValue(item));
-        });
-      } else {
-        add(stringifyValue(value));
-      }
-    }
-
-    add("DEBATRIX", true, 36);
-    add(
-      prep.mode === "mun"
-        ? "MODEL UNITED NATIONS — QUICK REFERENCE"
-        : "DEBATE PREPARATION — QUICK REFERENCE",
-      true,
-      19
-    );
-
-    add(prep.title, true, 30);
-    add("Prepared " + new Date().toLocaleDateString());
-
-    const data = prep.content || {};
-
-    if (prep.mode === "mun") {
-      section("Agenda Overview", data.overview);
-      section("Country Position", data.countryPosition);
-      section("Policy Priorities", data.policyPriorities);
-      section("Opening Speech", data.openingSpeech);
-      section("Other Delegations", data.countryDynamics);
-      section("Negotiation Strategy", data.negotiationStrategy);
-      section("Points of Information", data.pois);
-      section("Resolution Ideas", data.resolutionIdeas);
-      section("Research Checklist", data.researchChecklist);
-    } else {
-      const quick = data.doodle || {};
-
-      section("Understanding the Motion", data.framing);
-      section("Key Arguments", data.points);
-      section("Rebuttals and Responses", data.attacks);
-      section("Opening Hook", quick.hook);
-      section("Three Pillars", quick.pillars);
-      section("Evidence to Verify", quick.numbers);
-      section("Comebacks", quick.comebacks);
-      section("Memorable Lines", quick.zingers);
-      section("Closing Statement", quick.closer);
-    }
-
-    heading("Final Reminder");
-    add(
-      "Verify all facts, sources and quotations before using this preparation."
-    );
-
-    const documentFile = new D.Document({
-      creator:"DEBATRIX",
-      title:prep.title,
-      sections:[{
-        properties:{},
-        children
-      }]
-    });
-
-    const blob = await D.Packer.toBlob(documentFile);
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-
-    link.href = url;
-    link.download =
-      "DEBATRIX_" +
-      (prep.mode === "mun" ? "MUN" : "Debate") +
-      "_Quick_Reference.docx";
-
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-
-    setTimeout(() => URL.revokeObjectURL(url), 60000);
-
-    message("save-status", "Word document downloaded.");
-
-  } catch (error) {
-    message(
-      "save-status",
-      "Word export failed: " + friendlyError(error)
-    );
-  } finally {
-    button.disabled = false;
-    button.textContent = "Download Quick Reference (.docx) ↓";
-  }
-};
-
-/* AUTHENTICATION */
-
-async function refreshUser() {
-  if (!db) {
-    currentUser = null;
-    message(
-      "account-status",
-      "Guest mode. Authentication is temporarily unavailable."
-    );
-    return;
-  }
-
-  const {data,error} = await db.auth.getUser();
-
-  currentUser = error ? null : data.user;
-
-  $("logout-btn").hidden = !currentUser;
-
-  $("auth-btn").textContent =
-    currentUser ? "My account" : "Log in / Sign up";
-
-  message(
-    "account-status",
-    currentUser
-      ? "Signed in as " + currentUser.email
-      : "Guest mode — no login required."
-  );
-}
-
-function openAuthPanel() {
-  showPage("auth-panel");
-  $("login-signup-box").hidden = false;
-  $("reset-password-box").hidden = true;
-}
-
-$("auth-btn").onclick = () => {
-  openAuthPanel();
-  message("auth-message", "");
-};
-
-$("signup-btn").onclick = async () => {
-  if (!db) {
-    message("auth-message", "Authentication is unavailable.");
-    return;
-  }
-
-  const email = $("auth-email").value.trim();
-  const password = $("auth-password").value;
-
-  if (!email || password.length < 8) {
-    message(
-      "auth-message",
-      "Enter an email and password of at least 8 characters."
-    );
-    return;
-  }
-
-  const button = $("signup-btn");
-  button.disabled = true;
-
-  try {
-    const {data,error} = await db.auth.signUp({
-      email,
-      password,
-      options:{
-        emailRedirectTo:
-          window.location.origin + window.location.pathname
-      }
-    });
-
-    if (error) throw error;
-
-    message(
-      "auth-message",
-      data.session
-        ? "Account created. You are signed in."
-        : "Check your email for a confirmation link."
-    );
-
-    await refreshUser();
-  } catch (error) {
-    message("auth-message", friendlyError(error));
-  } finally {
-    button.disabled = false;
-  }
-};
-
-$("login-btn").onclick = async () => {
-  if (!db) {
-    message("auth-message", "Authentication is unavailable.");
-    return;
-  }
-
-  const button = $("login-btn");
-  button.disabled = true;
-
-  try {
-    const {error} = await db.auth.signInWithPassword({
-      email:$("auth-email").value.trim(),
-      password:$("auth-password").value
-    });
-
-    if (error) throw error;
-
-    await refreshUser();
-    showWorkspace();
-  } catch (error) {
-    message("auth-message", friendlyError(error));
-  } finally {
-    button.disabled = false;
-  }
-};
-
-$("logout-btn").onclick = async () => {
-  if (!db) return;
-
-  const {error} = await db.auth.signOut();
-
-  if (error) {
-    alert(friendlyError(error));
-    return;
-  }
-
-  currentUser = null;
-  activeTeam = null;
-  activeTeamPreparation = null;
-  teamsCache = [];
-
-  await refreshUser();
-  showWorkspace();
-};
-
-$("forgot-password-btn").onclick = async () => {
-  if (!db) return;
-
-  const email = $("auth-email").value.trim();
-
-  if (!email) {
-    message("auth-message", "Enter your email first.");
-    return;
-  }
-
-  const button = $("forgot-password-btn");
-  button.disabled = true;
-
-  try {
-    const redirectTo =
-      window.location.origin +
-      window.location.pathname +
-      "?reset=1";
-
-    const {error} = await db.auth.resetPasswordForEmail(email, {
-      redirectTo
-    });
-
-    if (error) throw error;
-
-    message(
-      "auth-message",
-      "If an account exists, a recovery email has been sent."
-    );
-  } catch (error) {
-    message("auth-message", friendlyError(error));
-  } finally {
-    button.disabled = false;
-  }
-};
-
-function showPasswordRecovery() {
-  showPage("auth-panel");
-
-  $("login-signup-box").hidden = true;
-  $("reset-password-box").hidden = false;
-
-  message(
-    "reset-password-message",
-    "Enter and confirm your new password."
-  );
-}
-
-$("update-password-btn").onclick = async () => {
-  if (!db) return;
-
-  const password = $("new-password").value;
-  const confirmPassword = $("confirm-new-password").value;
-
-  if (password.length < 8) {
-    message(
-      "reset-password-message",
-      "Password must be at least 8 characters."
-    );
-    return;
-  }
-
-  if (password !== confirmPassword) {
-    message(
-      "reset-password-message",
-      "Passwords do not match."
-    );
-    return;
-  }
-
-  const button = $("update-password-btn");
-  button.disabled = true;
-
-  try {
-    const {error} = await db.auth.updateUser({password});
-
-    if (error) throw error;
-
-    await db.auth.signOut();
-    await refreshUser();
-
-    $("reset-password-box").hidden = true;
-    $("login-signup-box").hidden = false;
-
-    message(
-      "auth-message",
-      "Password updated. Log in with your new password."
-    );
-  } catch (error) {
-    message(
-      "reset-password-message",
-      friendlyError(error)
-    );
-  } finally {
-    button.disabled = false;
-  }
-};
-
-async function processRecoveryLink() {
-  if (!db) return;
-
-  const params = new URLSearchParams(window.location.search);
-  const hashParams = new URLSearchParams(
-    window.location.hash.replace(/^#/,"")
-  );
-
-  const code = params.get("code");
-  const resetMarker = params.get("reset") === "1";
-  const queryType = params.get("type");
-  const hashType = hashParams.get("type");
-
-  if (code) {
-    try {
-      const {error} = await db.auth.exchangeCodeForSession(code);
-      if (error) throw error;
-
-      window.history.replaceState(
-        {},
-        document.title,
-        window.location.pathname
-      );
-
-      if (resetMarker || queryType === "recovery") {
-        showPasswordRecovery();
-      } else {
-        await refreshUser();
-      }
-    } catch (error) {
-      openAuthPanel();
-      message(
-        "auth-message",
-        "Recovery link failed: " + friendlyError(error)
-      );
-    }
-
-    return;
-  }
-
-  const accessToken = hashParams.get("access_token");
-  const refreshToken = hashParams.get("refresh_token");
-
-  if (
-    accessToken &&
-    refreshToken &&
-    (resetMarker || queryType === "recovery" || hashType === "recovery")
-  ) {
-    try {
-      const {error} = await db.auth.setSession({
-        access_token:accessToken,
-        refresh_token:refreshToken
-      });
-
-      if (error) throw error;
-
-      window.history.replaceState(
-        {},
-        document.title,
-        window.location.pathname
-      );
-
-      showPasswordRecovery();
-    } catch (error) {
-      openAuthPanel();
-      message("auth-message", friendlyError(error));
-    }
-
-    return;
-  }
-
-  if (
-    resetMarker ||
-    queryType === "recovery" ||
-    hashType === "recovery"
-  ) {
-    openAuthPanel();
-    message(
-      "auth-message",
-      "No valid recovery session found. Request a new reset email."
-    );
-  }
-}
-
-if (db) {
-  db.auth.onAuthStateChange((event,session) => {
-    currentUser = session?.user || null;
-
-    $("logout-btn").hidden = !currentUser;
-
-    $("auth-btn").textContent =
-      currentUser ? "My account" : "Log in / Sign up";
-
-    message(
-      "account-status",
-      currentUser
-        ? "Signed in as " + currentUser.email
-        : "Guest mode — no login required."
-    );
-
-    if (event === "PASSWORD_RECOVERY") {
-      showPasswordRecovery();
+  nav.querySelectorAll("a").forEach(function(link){
+    link.addEventListener("click",closeMenu);
+  });
+
+  document.addEventListener("keydown",function(event){
+    if(event.key === "Escape") closeMenu();
+  });
+
+  document.addEventListener("click",function(event){
+    if(!nav.contains(event.target) &&
+       !toggle.contains(event.target)){
+      closeMenu();
     }
   });
-}
 
-/* HISTORY */
-
-async function loadHistory() {
-  message("history-message", "Loading preparations...");
-  $("history-list").replaceChildren();
-
-  try {
-    let items = guestHistory();
-
-    if (currentUser && db) {
-      const {data,error} = await db
-        .from("preparations")
-        .select("id,mode,title,content,created_at")
-        .eq("user_id",currentUser.id)
-        .order("created_at",{ascending:false})
-        .limit(100);
-
-      if (error) throw error;
-
-      const combined = [...(data || []),...items];
-
-      items = Array.from(
-        new Map(combined.map(item => [item.id,item])).values()
-      );
-    }
-
-    items.sort(
-      (a,b) =>
-        new Date(b.created_at || 0) -
-        new Date(a.created_at || 0)
-    );
-
-    message(
-      "history-message",
-      items.length ? "" : "No saved preparations yet."
-    );
-
-    items.forEach(prep => {
-      const item = document.createElement("div");
-      item.className = "history-item";
-
-      const details = document.createElement("div");
-
-      const title = document.createElement("strong");
-      title.textContent = prep.title || "Untitled preparation";
-
-      const description = document.createElement("p");
-      description.textContent =
-        (prep.mode === "mun" ? "Model UN" : "Debate Prep") +
-        " · " +
-        new Date(prep.created_at).toLocaleDateString();
-
-      details.append(title,description);
-
-      const actions = document.createElement("div");
-      actions.className = "history-actions";
-
-      const open = document.createElement("button");
-      open.className = "smallbtn";
-      open.textContent = "Open";
-
-      open.onclick = () => displayPreparation(prep);
-
-      const remove = document.createElement("button");
-      remove.className = "smallbtn";
-      remove.textContent = "Delete";
-
-      remove.onclick = async () => {
-        if (!confirm("Delete this preparation?")) return;
-
-        try {
-          if (currentUser && db) {
-            const {error} = await db
-              .from("preparations")
-              .delete()
-              .eq("id",prep.id)
-              .eq("user_id",currentUser.id);
-
-            if (error) throw error;
-          }
-
-          writeGuestHistory(
-            guestHistory().filter(item => item.id !== prep.id)
-          );
-
-          await loadHistory();
-        } catch (error) {
-          message(
-            "history-message",
-            "Delete failed: " + friendlyError(error)
-          );
-        }
-      };
-
-      actions.append(open,remove);
-      item.append(details,actions);
-      $("history-list").appendChild(item);
-    });
-
-  } catch (error) {
-    message(
-      "history-message",
-      "Could not load history: " + friendlyError(error)
-    );
-  }
-}
-
-$("history-btn").onclick = async () => {
-  showPage("history-panel");
-
-  $("import-btn").hidden =
-    !currentUser || guestHistory().length === 0;
-
-  message(
-    "history-description",
-    currentUser
-      ? "Your saved preparations, synced to your account."
-      : "Guest history is stored only in this browser."
-  );
-
-  await loadHistory();
-};
-
-$("import-btn").onclick = async () => {
-  if (!currentUser || !db) return;
-
-  const items = guestHistory();
-
-  if (!items.length) return;
-
-  const button = $("import-btn");
-  button.disabled = true;
-
-  message("history-message", "Importing guest history...");
-
-  try {
-    const rows = items.map(prep => ({
-      id:prep.id,
-      user_id:currentUser.id,
-      mode:prep.mode,
-      title:prep.title,
-      content:prep.content,
-      created_at:prep.created_at
-    }));
-
-    const {error} = await db
-      .from("preparations")
-      .upsert(rows,{onConflict:"id"});
-
-    if (error) throw error;
-
-    writeGuestHistory([]);
-    button.hidden = true;
-
-    await loadHistory();
-
-    message(
-      "history-message",
-      "Guest preparations imported successfully."
-    );
-  } catch (error) {
-    message(
-      "history-message",
-      "Import failed: " + friendlyError(error)
-    );
-  } finally {
-    button.disabled = false;
-  }
-};
-
-/* TEAMS */
-
-function teamsRequireLogin() {
-  if (currentUser && db) return true;
-
-  message(
-    "teams-message",
-    "Log in or sign up to create, join or view Teams."
-  );
-
-  return false;
-}
-
-function openTeamsPanel() {
-  showPage("teams-panel");
-
-  $("teams-main").hidden = false;
-  $("team-detail").hidden = true;
-
-  activeTeam = null;
-  activeTeamPreparation = null;
-
-  message("teams-message", "");
-
-  if (teamsRequireLogin()) {
-    loadTeams();
-  }
-}
-
-$("teams-btn").onclick = openTeamsPanel;
-
-$("team-list-back").onclick = openTeamsPanel;
-
-$("team-refresh").onclick = loadTeams;
-
-async function loadTeams() {
-  if (!teamsRequireLogin()) return;
-
-  message("teams-message", "Loading teams...");
-
-  try {
-    const {data,error} = await db
-      .from("team_members")
-      .select(
-        "team_id,role,debatrix_teams(id,name,owner_id,invite_code)"
-      )
-      .eq("user_id",currentUser.id);
-
-    if (error) throw error;
-
-    teamsCache = (data || [])
-      .filter(row => row.debatrix_teams)
-      .map(row => ({
-        ...row.debatrix_teams,
-        role:row.role
-      }));
-
-    $("teams-list").replaceChildren();
-
-    if (!teamsCache.length) {
-      message(
-        "teams-message",
-        "No teams yet. Create one or join using an invitation code."
-      );
-      return;
-    }
-
-    message(
-      "teams-message",
-      teamsCache.length + " team(s) loaded."
-    );
-
-    teamsCache.forEach(team => {
-      const box = document.createElement("div");
-      box.className = "history-item";
-
-      const info = document.createElement("div");
-
-      const title = document.createElement("strong");
-      title.textContent = team.name;
-
-      const role = document.createElement("p");
-      role.textContent = "Your role: " + (team.role || "member");
-
-      info.append(title,role);
-
-      const open = document.createElement("button");
-      open.className = "smallbtn";
-      open.textContent = "Open Team →";
-      open.onclick = () => openTeam(team);
-
-      box.append(info,open);
-      $("teams-list").appendChild(box);
-    });
-
-  } catch (error) {
-    message(
-      "teams-message",
-      "Could not load teams: " + friendlyError(error)
-    );
-  }
-}
-
-$("team-create").onclick = async () => {
-  if (!teamsRequireLogin()) return;
-
-  const team_name = $("team-name").value.trim();
-
-  if (!team_name) {
-    message("teams-message", "Enter a team name.");
-    return;
-  }
-
-  const button = $("team-create");
-  button.disabled = true;
-
-  message("teams-message", "Creating team...");
-
-  try {
-    const {error} = await db.rpc(
-      "create_debatrix_team",
-      {team_name}
-    );
-
-    if (error) throw error;
-
-    $("team-name").value = "";
-
-    await loadTeams();
-
-    message("teams-message", "Team created successfully.");
-
-  } catch (error) {
-    message(
-      "teams-message",
-      "Could not create team: " + friendlyError(error)
-    );
-  } finally {
-    button.disabled = false;
-  }
-};
-
-$("team-join").onclick = async () => {
-  if (!teamsRequireLogin()) return;
-
-  const invite_code = $("team-code").value.trim();
-
-  if (!invite_code) {
-    message("teams-message", "Enter an invitation code.");
-    return;
-  }
-
-  const button = $("team-join");
-  button.disabled = true;
-
-  message("teams-message", "Joining team...");
-
-  try {
-    const {error} = await db.rpc(
-      "join_debatrix_team",
-      {invite_code}
-    );
-
-    if (error) throw error;
-
-    $("team-code").value = "";
-
-    await loadTeams();
-
-    message("teams-message", "Joined team successfully.");
-
-  } catch (error) {
-    message(
-      "teams-message",
-      "Could not join team: " + friendlyError(error)
-    );
-  } finally {
-    button.disabled = false;
-  }
-};
-
-async function openTeam(team) {
-  if (!teamsRequireLogin()) return;
-
-  activeTeam = team;
-  activeTeamPreparation = null;
-
-  $("teams-main").hidden = true;
-  $("team-detail").hidden = false;
-  $("team-notes-box").hidden = true;
-
-  $("team-detail-title").textContent = team.name;
-
-  const owner = currentUser.id === team.owner_id;
-
-  $("team-invite-display").textContent =
-    owner && team.invite_code
-      ? "Invitation code: " + team.invite_code
-      : "Ask the team owner for an invitation code.";
-
-  $("team-copy-code").hidden =
-    !(owner && team.invite_code);
-
-  message("team-detail-message", "");
-
-  await loadTeamPreps();
-}
-
-$("team-copy-code").onclick = async () => {
-  if (!activeTeam?.invite_code) return;
-
-  try {
-    await navigator.clipboard.writeText(
-      activeTeam.invite_code
-    );
-
-    message(
-      "team-detail-message",
-      "Invitation code copied."
-    );
-  } catch {
-    window.prompt(
-      "Copy this invitation code:",
-      activeTeam.invite_code
-    );
-  }
-};
-
-$("team-refresh-preps").onclick = loadTeamPreps;
-
-async function loadTeamPreps() {
-  if (!activeTeam || !db) return;
-
-  const teamId = activeTeam.id;
-
-  message(
-    "team-detail-message",
-    "Loading shared preparations..."
-  );
-
-  try {
-    const {data,error} = await db
-      .from("team_preparations")
-      .select(
-        "id,team_id,title,format,content,created_at,updated_at"
-      )
-      .eq("team_id",teamId)
-      .order("created_at",{ascending:false})
-      .limit(100);
-
-    if (error) throw error;
-
-    if (activeTeam?.id !== teamId) return;
-
-    $("team-preps").replaceChildren();
-
-    if (!data?.length) {
-      message(
-        "team-detail-message",
-        "No shared preparations yet."
-      );
-      return;
-    }
-
-    message(
-      "team-detail-message",
-      data.length + " shared preparation(s)."
-    );
-
-    data.forEach(item => {
-      const box = document.createElement("div");
-      box.className = "history-item";
-
-      const info = document.createElement("div");
-
-      const title = document.createElement("strong");
-      title.textContent = item.title || "Untitled preparation";
-
-      const detail = document.createElement("p");
-      detail.textContent =
-        (item.format === "mun" ? "Model UN" : "Debate") +
-        " · " +
-        new Date(item.created_at).toLocaleDateString();
-
-      info.append(title,detail);
-
-      const actions = document.createElement("div");
-      actions.className = "history-actions";
-
-      const open = document.createElement("button");
-      open.className = "smallbtn";
-      open.textContent = "Open";
-
-      open.onclick = () => {
-        const stored = item.content || {};
-        const prep =
-          stored.preparation && stored.preparation.content
-            ? stored.preparation
-            : {
-                id:newId(),
-                mode:item.format === "mun" ? "mun" : "debate",
-                title:item.title,
-                content:stored,
-                created_at:item.created_at
-              };
-
-        displayPreparation(prep);
-      };
-
-      const notes = document.createElement("button");
-      notes.className = "smallbtn";
-      notes.textContent = "Team Notes";
-
-      notes.onclick = () => {
-        activeTeamPreparation = item;
-
-        $("team-notes-box").hidden = false;
-
-        $("team-selected-prep").textContent =
-          item.title || "Untitled preparation";
-
-        $("team-notes").value =
-          typeof item.content?.notes === "string"
-            ? item.content.notes
-            : "";
-
-        message("team-notes-message", "");
-
-        $("team-notes-box").scrollIntoView({
-          behavior:"smooth"
-        });
-      };
-
-      actions.append(open,notes);
-      box.append(info,actions);
-
-      $("team-preps").appendChild(box);
-    });
-
-  } catch (error) {
-    message(
-      "team-detail-message",
-      "Could not load shared preparations: " +
-      friendlyError(error)
-    );
-  }
-}
-
-/* SHARE PREPARATIONS */
-
-async function sharePreparationWithTeam(team) {
-  if (!currentUser || !db || !currentPreparation) return;
-
-  const prep = currentPreparation;
-
-  const {error} = await db
-    .from("team_preparations")
-    .insert({
-      team_id:team.id,
-      title:prep.title,
-      format:prep.mode,
-      content:{
-        preparation:prep,
-        notes:""
-      },
-      created_by:currentUser.id,
-      updated_by:currentUser.id
-    });
-
-  if (error) throw error;
-}
-
-async function shareCurrentPreparation() {
-  if (!currentUser || !db) {
-    openAuthPanel();
-    message(
-      "auth-message",
-      "Log in to share preparations with Teams."
-    );
-    return;
-  }
-
-  if (!currentPreparation) {
-    alert("Generate or open a preparation first.");
-    return;
-  }
-
-  try {
-    let team = activeTeam;
-
-    if (!team) {
-      const {data,error} = await db
-        .from("team_members")
-        .select(
-          "team_id,role,debatrix_teams(id,name,owner_id,invite_code)"
-        )
-        .eq("user_id",currentUser.id);
-
-      if (error) throw error;
-
-      const teams = (data || [])
-        .map(row => row.debatrix_teams)
-        .filter(Boolean);
-
-      if (!teams.length) {
-        alert("Create or join a team first.");
-        openTeamsPanel();
-        return;
-      }
-
-      const choices = teams
-        .map((item,index) => `${index + 1}. ${item.name}`)
-        .join("\n");
-
-      const answer = window.prompt(
-        "Choose a team number:\n" + choices
-      );
-
-      if (answer === null) return;
-
-      const index = Number(answer) - 1;
-
-      if (!Number.isInteger(index) || !teams[index]) {
-        alert("Invalid team selection.");
-        return;
-      }
-
-      team = teams[index];
-    }
-
-    await sharePreparationWithTeam(team);
-
-    alert("Preparation shared successfully!");
-
-    showPage("teams-panel");
-    await openTeam(team);
-
-  } catch (error) {
-    alert(
-      "Could not share preparation: " +
-      friendlyError(error)
-    );
-  }
-}
-
-$("share-btn").onclick = shareCurrentPreparation;
-$("team-share-current").onclick = shareCurrentPreparation;
-
-/* COLLABORATIVE NOTES */
-
-$("team-save-notes").onclick = async () => {
-  if (!activeTeam || !activeTeamPreparation || !currentUser) {
-    message(
-      "team-notes-message",
-      "Select a shared preparation first."
-    );
-    return;
-  }
-
-  const button = $("team-save-notes");
-  button.disabled = true;
-
-  message("team-notes-message", "Saving notes...");
-
-  try {
-    const content = {
-      ...(activeTeamPreparation.content || {}),
-      notes:$("team-notes").value
-    };
-
-    const {error} = await db
-      .from("team_preparations")
-      .update({
-        content,
-        updated_by:currentUser.id,
-        updated_at:new Date().toISOString()
-      })
-      .eq("id",activeTeamPreparation.id)
-      .eq("team_id",activeTeam.id);
-
-    if (error) throw error;
-
-    activeTeamPreparation.content = content;
-
-    message(
-      "team-notes-message",
-      "Notes saved successfully."
-    );
-
-  } catch (error) {
-    message(
-      "team-notes-message",
-      "Could not save notes: " + friendlyError(error)
-    );
-  } finally {
-    button.disabled = false;
-  }
-};
-
-/* INITIALIZE */
-
-(async () => {
-  try {
-    await refreshUser();
-    await processRecoveryLink();
-  } catch (error) {
-    console.error("DEBATRIX initialization:",error);
-  }
+  window.addEventListener("resize",function(){
+    if(window.innerWidth > 800) closeMenu();
+  });
 })();
 </script>
+
 </body>
 </html>
 
+<script>
+(function () {
+  const validPages = [
+    "home", "debate", "mun",
+    "history", "teams", "account"
+  ];
 
+  function openRequestedPage() {
+    const page = window.location.hash.slice(1);
+
+    if (!validPages.includes(page)) return;
+
+    const button = document.querySelector(
+      '[data-page="' + page + '"]'
+    );
+
+    if (button) button.click();
+  }
+
+  window.addEventListener("load", openRequestedPage);
+  window.addEventListener("hashchange", openRequestedPage);
+})();
+</script>
