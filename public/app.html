@@ -1620,28 +1620,7 @@
       return;
     }
 
-    const button = $("github-login");
-    button.disabled = true;
-    button.textContent = "Connecting to GitHub...";
-
-    try {
-      const { error } =
-        await supabaseClient.auth.signInWithOAuth({
-          provider: "github",
-          options: {
-            redirectTo:
-              location.origin + "/app.html#account"
-          }
-        });
-
-      if (error) throw error;
-
-    } catch (error) {
-      showStatus(
-        "auth-status",
-        error.message || "GitHub login failed.",
-        true
-      );
+  
 
       button.disabled = false;
       button.textContent = "Continue with GitHub";
@@ -1655,7 +1634,54 @@
       await supabaseClient.auth.signOut();
 
     if (error) {
-      alert(error.message);
+      alert(error
+$("github-login").addEventListener("click", async () => {
+  const button = $("github-login");
+
+  if (!supabaseClient) {
+    alert("Supabase could not load. Please refresh the page.");
+    return;
+  }
+
+  button.disabled = true;
+  button.textContent = "Connecting to GitHub...";
+
+  try {
+    const redirectUrl =
+      window.location.origin + "/app.html#account";
+
+    const { data, error } =
+      await supabaseClient.auth.signInWithOAuth({
+        provider: "github",
+        options: {
+          redirectTo: redirectUrl,
+          skipBrowserRedirect: true
+        }
+      });
+
+    if (error) throw error;
+
+    if (!data?.url) {
+      throw new Error(
+        "Supabase did not return a GitHub authorization URL."
+      );
+    }
+
+    window.location.assign(data.url);
+
+  } catch (error) {
+    console.error("GitHub login failed:", error);
+
+    alert(
+      "GitHub login failed: " +
+      (error.message || "Unknown error")
+    );
+
+    button.disabled = false;
+    button.textContent = "Continue with GitHub";
+  }
+});
+.message);
       return;
     }
 
